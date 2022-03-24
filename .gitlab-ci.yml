@@ -1,0 +1,40 @@
+image: node:11
+
+stages:
+  - build
+  - deploy
+
+variables:
+  PROJECT_NAME: ${CI_PROJECT_NAME}
+
+before_script:
+  - apt-get update
+  - apt-get upgrade -y
+  - apt-get install -y rsync openssh-client
+  - mkdir -p ~/.ssh
+  - eval $(ssh-agent -s)
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - ssh-add <(echo "$SSH_GITLAB_PRIVATE_KEY")
+
+deploy_staging:
+  stage: deploy
+  script:
+    - rsync --perms --chmod=755 --exclude=node_modules --exclude=.sass-cache -e "ssh -p $GKE_STAGING_NFS_PORT" -a --delete . $SSH_GITLAB_USER@$GKE_STAGING_NFS:/home/deploybot/$PROJECT_NAME
+    - ssh -p $GKE_STAGING_NFS_PORT $SSH_GITLAB_USER@$GKE_STAGING_NFS "ruby /home/deploybot/post-deployment-themes.rb $PROJECT_NAME"
+  environment:
+    name: staging
+    url: https://dev.grifosdefabrica.es
+  only:
+    - develop
+
+deploy_prod:
+  stage: deploy
+  script:
+    ## NFS EUROPE
+    - rsync --perms --chmod=755 --exclude=node_modules --exclude=.sass-cache -e "ssh -p $GKE_EUROPE_NFS_PORT" -a --delete . $SSH_GITLAB_USER@$GKE_EUROPE_NFS:/home/deploybot/$PROJECT_NAME
+    - ssh -p $GKE_EUROPE_NFS_PORT $SSH_GITLAB_USER@$GKE_EUROPE_NFS "ruby /home/deploybot/post-deployment-themes.rb $PROJECT_NAME"
+  environment:
+    name: production
+    url: https://grifosdefabrica.es
+  only:
+    - main
