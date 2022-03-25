@@ -51,7 +51,7 @@ function electro_wp_text_input( $field ) {
 	if ( ! empty( $field['description'] ) ) {
 
 		if ( isset( $field['desc_tip'] ) && false !== $field['desc_tip'] ) {
-			echo electro_help_tip( $field['description'] );
+			echo addslashes(electro_help_tip( $field['description'] ));
 		} else {
 			echo '<span class="description">' . wp_kses_post( $field['description'] ) . '</span>';
 		}
