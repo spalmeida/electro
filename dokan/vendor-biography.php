@@ -46,7 +46,7 @@ $store_info   = $store_user->get_shop_info();
             </div>
             <?php
                 if ( ! empty( $store_info['vendor_biography'] ) ) {
-                    printf( '%s', apply_filters( 'the_content', $store_info['vendor_biography'] ) );
+                    htmlspecialchars(printf( '%s', apply_filters( 'the_content', $store_info['vendor_biography'] ) ));
                 }
             ?>
 

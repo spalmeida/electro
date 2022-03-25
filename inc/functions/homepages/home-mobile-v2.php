@@ -25,7 +25,7 @@ if ( ! function_exists( 'electro_home_mobile_v2_slider' ) ) {
             $section_class = ' animate-in-view';
         }
         ?>
-        <div class="<?php echo esc_attr( $section_class );?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation );?>"<?php endif; ?>>
+        <div class="<?php echo esc_attr( $section_class );?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?= esc_attr( $animation ); ?>"<?php endif; ?>>
             <?php echo apply_filters( 'electro_home_mobile_v2_slider_html', do_shortcode( $shortcode ) ); ?>
         </div><?php
     }
