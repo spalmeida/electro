@@ -468,10 +468,8 @@ if ( !function_exists( 'electro_audio_player' ) ) :
 		if ( isset($embed) && $embed != '' ) {
 			// Embed Audio
 			if( !empty($embed) ) {
-				// run oEmbed for known sources to generate embed code from audio links
-				echo $GLOBALS['wp_embed']->autoembed( stripslashes( htmlspecialchars_decode( $embed ) ) );
 
-				return; // and.... Done!
+				return $GLOBALS['wp_embed']->autoembed( stripslashes( htmlspecialchars_decode( $embed ) ) );
 			}
 
 		} else if( ! empty( $mp3 ) || ! empty ( $ogg ) ) {

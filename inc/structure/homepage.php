@@ -2595,7 +2595,7 @@ if ( ! function_exists( 'electro_home_banner_1_6_block' ) ) {
 					if( isset( $featured_banner['el_class'] ) && ! empty( $featured_banner['el_class'] ) )
 						$featured_banner_class = esc_attr( ' ' . $featured_banner['el_class'] );
 					?>
-					<div class="mb-3 col-lg-5 featured-banner<?= $featured_banner_class ?>">
+					<div class="mb-3 col-lg-5 featured-banner<?= $featured_banner_class; ?>">
 						<a class="d-block overflow-hidden" href="<?php echo esc_url( $featured_banner['action_link'] ); ?>">
 							<img class="featured-banner-img w-100" src="<?php echo esc_url( $featured_banner['image'] ); ?>">
 						</a>
