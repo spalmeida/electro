@@ -37,7 +37,7 @@ if ( ! function_exists( 'electro_home_v12_page_template_content' ) ) {
 			$attr[ 'data-animation' ] = $animation;
 		}
 
-		?><div <?= electro_render_attributes( $attr ) ?>>
+		?><div <?= electro_render_attributes( $attr ); ?>>
 			<?php electro_page_template_content(); ?>
 		</div><?php
 	}
@@ -84,7 +84,7 @@ if ( ! function_exists( 'electro_home_v12_slider_block' ) ) {
 		}
 
 		?><div <?php echo electro_render_attributes( $attr ); ?>>
-			<?= apply_filters( 'electro_home_v12_slider_html', do_shortcode( $shortcode ) ) ?>
+			<?= apply_filters( 'electro_home_v12_slider_html', do_shortcode( $shortcode ) ); ?>
 		</div><?php
 	}
 }
