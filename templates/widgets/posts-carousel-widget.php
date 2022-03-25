@@ -34,7 +34,7 @@ if ($r->have_posts()) :
 			<?php if ( apply_filters( 'show_custom_nav', true ) ) : ?>
 				<div class="owl-nav">
 					<?php if ( is_rtl() ) : ?>
-					<a href="#posts-carousel-prev" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-right"></i></a>
+					<a href="#posts-carousel-prev" data-target="#<?= esc_attr( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-right"></i></a>
 					<a href="#posts-carousel-next" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-next"><i class="fa fa-angle-left"></i></a>
 					<?php else : ?>
 					<a href="#posts-carousel-prev" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-left"></i></a>
