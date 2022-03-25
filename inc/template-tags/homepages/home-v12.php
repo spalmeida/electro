@@ -37,7 +37,7 @@ if ( ! function_exists( 'electro_home_v12_page_template_content' ) ) {
 			$attr[ 'data-animation' ] = $animation;
 		}
 
-		?><div <?php echo electro_render_attributes( $attr ); ?>>
+		?><div <?= electro_render_attributes( $attr ) ?>>
 			<?php electro_page_template_content(); ?>
 		</div><?php
 	}
@@ -84,7 +84,7 @@ if ( ! function_exists( 'electro_home_v12_slider_block' ) ) {
 		}
 
 		?><div <?php echo electro_render_attributes( $attr ); ?>>
-			<?php echo apply_filters( 'electro_home_v12_slider_html', do_shortcode( $shortcode ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<?= apply_filters( 'electro_home_v12_slider_html', do_shortcode( $shortcode ) ) ?>
 		</div><?php
 	}
 }
@@ -142,7 +142,7 @@ if ( ! function_exists( 'electro_home_v12_categories_block' ) ) {
 		}
 
 		?><div <?php echo electro_render_attributes( $attr ); ?>>
-			<div class="row row-cols-md-3 row-cols-xl-<?php echo esc_attr( $categories_options[ 'categories' ][ 'columns' ] ); ?> mb-5 mb-xl-0">
+			<div class="row row-cols-md-3 row-cols-xl-<?= esc_attr( $categories_options[ 'categories' ][ 'columns' ] ) ?> mb-5 mb-xl-0">
 				<?php foreach( $product_cats as $product_cat ) : ?>
 					<?php
 						$cat_thumb_id = get_term_meta( $product_cat->term_id, 'thumbnail_id', true );
