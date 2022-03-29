@@ -1057,8 +1057,8 @@ class Electro_Meta_Box_Home_v7 {
     }
 
     public static function save( $post_id, $post ) {
-        if ( isset( $_POST['_home_v7'] ) ) {
-            $clean_home_v7_options = electro_clean_kses_post( $_POST['_home_v7'] );
+        if ( isset( filter_input(INPUT_POST, '_home_v7', FILTER_SANITIZE_STRING) ) ) {
+            $clean_home_v7_options = electro_clean_kses_post( filter_input(INPUT_POST, '_home_v7', FILTER_SANITIZE_STRING) );
             update_post_meta( $post_id, '_home_v7_options',  serialize( $clean_home_v7_options ) );
         }
     }
