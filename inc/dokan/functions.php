@@ -380,7 +380,7 @@ if ( ! function_exists( 'electro_dokan_vendor_control_bar' ) ) {
 						<option value="<?php echo esc_attr( $id ); ?>" <?php selected( $orderby, $id ); ?>><?php echo esc_html( $name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<input type="hidden" name="author" value="<?php echo esc_attr( $store_id ); ?>" />
+				<input type="hidden" name="author" value="<?php print_r(esc_attr( $store_id )); ?>" />
 				<input type="hidden" name="post_type" value="product" />
 				<?php wc_query_string_form_fields( null, array( 'orderby', 'submit', 'paged', 'product-page' ) ); ?>
 			</form>
@@ -411,7 +411,7 @@ if ( ! function_exists( 'electro_dokan_store_jumbotron' ) ) {
                 $content = do_shortcode( $static_block->post_content );
             }
 
-            echo '<div class="dokan-store-top-jumbotron">' . $content . '</div>';
+            print_r( '<div class="dokan-store-top-jumbotron">' . $content . '</div>' );
         }
 	}
 }
@@ -422,15 +422,15 @@ if ( ! function_exists( 'electro_dokan_store_owner_info' ) ) {
 			?>
 			<div class="widget-store-owner">
 				<div class="store-owner-title">
-					<h3 class="widget-title"><?php echo apply_filters( 'electro_dokan_store_owner_info_title', esc_html__( 'Owner of Store', 'electro' ) ) ?></h3>
+					<h3 class="widget-title"><?php print_r( apply_filters( 'electro_dokan_store_owner_info_title', esc_html__( 'Owner of Store', 'electro' ) ) ) ?></h3>
 				</div>
 				<div class="store-owner-info">
 					<div class="store-owner-profile">
 						<div class="store-owner-avatar">
-							<?php echo get_avatar( $store_user_data->ID ); ?>
+							<?php print_r( get_avatar( $store_user_data->ID ) ); ?>
 						</div>
 						<div class="store-owner-profile-info">
-							<h5 class="owner-name"><?php echo esc_html( $store_user_data->display_name ); ?></h5>
+							<h5 class="owner-name"><?php print_r( esc_html( $store_user_data->display_name ) ); ?></h5>
 							<div class="owner-joined"><?php printf( esc_html__( 'Since %s', 'electro' ), date( "d M Y", strtotime( $store_user_data->user_registered ) ) ); ?></div>
 						</div>
 					</div>
