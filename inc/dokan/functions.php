@@ -41,41 +41,41 @@ if( ! function_exists( 'electro_get_dokan_store_sidebar' ) ) {
 		$map_location = isset( $store_info['location'] ) ? esc_attr( $store_info['location'] ) : '';
 
 		if ( dokan_get_option( 'enable_theme_store_sidebar', 'dokan_general', 'off' ) == 'off' ) { ?>
-		    <div id="dokan-secondary" class="dokan-clearfix dokan-store-sidebar" role="complementary">
-		    	<?php do_action( 'dokan_sidebar_store_widget_area_before', $store_user->data, $store_info ); ?>
-		        <div class="dokan-widget-area widget-collapse">
-		            <?php
-		            if ( ! dynamic_sidebar( 'sidebar-store' ) ) {
+			<div id="dokan-secondary" class="dokan-clearfix dokan-store-sidebar" role="complementary">
+				<?php do_action( 'dokan_sidebar_store_widget_area_before', $store_user->data, $store_info ); ?>
+				<div class="dokan-widget-area widget-collapse">
+					<?php
+					if ( ! dynamic_sidebar( 'sidebar-store' ) ) {
 
-		                $args = array(
-		                    'before_widget' => '<aside class="widget %s">',
-		                    'after_widget'  => '</aside>',
-		                    'before_title'  => '<h3 class="widget-title">',
-		                    'after_title'   => '</h3>',
-		                );
+						$args = array(
+							'before_widget' => '<aside class="widget %s">',
+							'after_widget'  => '</aside>',
+							'before_title'  => '<h3 class="widget-title">',
+							'after_title'   => '</h3>',
+						);
 
-		                if ( class_exists( 'Dokan_Store_Location' ) ) {
-		                    the_widget( 'Dokan_Store_Category_Menu', array( 'title' => __( 'Store Category', 'electro' ) ), $args );
+						if ( class_exists( 'Dokan_Store_Location' ) ) {
+							the_widget( 'Dokan_Store_Category_Menu', array( 'title' => __( 'Store Category', 'electro' ) ), $args );
 
-		                    if ( dokan_get_option( 'store_map', 'dokan_general', 'on' ) == 'on' ) {
-		                        the_widget( 'Dokan_Store_Location', array( 'title' => __( 'Store Location', 'electro' ) ), $args );
-		                    }
+							if ( dokan_get_option( 'store_map', 'dokan_general', 'on' ) == 'on' ) {
+								the_widget( 'Dokan_Store_Location', array( 'title' => __( 'Store Location', 'electro' ) ), $args );
+							}
 
-		                    if ( dokan_get_option( 'store_open_close', 'dokan_general', 'on' ) == 'on' ) {
-		                        the_widget( 'Dokan_Store_Open_Close', array( 'title' => __( 'Store Time', 'electro' ) ), $args );
-		                    }
+							if ( dokan_get_option( 'store_open_close', 'dokan_general', 'on' ) == 'on' ) {
+								the_widget( 'Dokan_Store_Open_Close', array( 'title' => __( 'Store Time', 'electro' ) ), $args );
+							}
 
-		                    if ( dokan_get_option( 'contact_seller', 'dokan_general', 'on' ) == 'on' ) {
-		                        the_widget( 'Dokan_Store_Contact_Form', array( 'title' => __( 'Contact Vendor', 'electro' ) ), $args );
-		                    }
-		                }
-		            }
-		            ?>
-		            <?php do_action( 'dokan_sidebar_store_after', $store_user->data, $store_info ); ?>
-		        </div>
-		        <?php do_action( 'dokan_sidebar_store_widget_area_after', $store_user->data, $store_info ); ?>
-		    </div><!-- #secondary .widget-area -->
-		<?php
+							if ( dokan_get_option( 'contact_seller', 'dokan_general', 'on' ) == 'on' ) {
+								the_widget( 'Dokan_Store_Contact_Form', array( 'title' => __( 'Contact Vendor', 'electro' ) ), $args );
+							}
+						}
+					}
+					?>
+					<?php do_action( 'dokan_sidebar_store_after', $store_user->data, $store_info ); ?>
+				</div>
+				<?php do_action( 'dokan_sidebar_store_widget_area_after', $store_user->data, $store_info ); ?>
+			</div><!-- #secondary .widget-area -->
+			<?php
 		} else {
 			get_sidebar( 'store' );
 		}
@@ -89,7 +89,7 @@ if ( ! function_exists( 'electro_dokan_store_list_sidebar' ) ) {
 		}
 
 		?><div id="dokan-secondary" class="dokan-store-list-sidebar" role="complementary"><?php
-			dynamic_sidebar( 'sidebar-store' );
+		dynamic_sidebar( 'sidebar-store' );
 		?></div><?php
 	}
 }
@@ -181,8 +181,8 @@ if ( ! function_exists( 'electro_dokan_product_edit_add_specifications' ) ) {
 			<div class="dokan-section-content">
 
 				<?php
-					$display_attributes = get_post_meta( $post_id, '_specifications_display_attributes', true );
-					$specifications = get_post_meta( $post_id, '_specifications', true );
+				$display_attributes = get_post_meta( $post_id, '_specifications_display_attributes', true );
+				$specifications = get_post_meta( $post_id, '_specifications', true );
 				?>
 
 				<div class="content-half-part dokan-form-group">
@@ -276,10 +276,10 @@ if ( ! function_exists( 'electro_dokan_vendor_page_modify_hooks' ) ) {
 
 				if( electro_dokan_store_share_exists() ) {
 					if( version_compare( dokan_pro()->version, '3.0.0' , '<' ) ) {
-	                    electro_remove_class_action( 'dokan_after_store_tabs', 'Dokan_Pro_Store_Share', 'render_share_button' , 1 );
-	                } else {
-	                    electro_remove_class_action( 'dokan_after_store_tabs', 'WeDevs\DokanPro\StoreShare', 'render_share_button' , 1 );
-	                }
+						electro_remove_class_action( 'dokan_after_store_tabs', 'Dokan_Pro_Store_Share', 'render_share_button' , 1 );
+					} else {
+						electro_remove_class_action( 'dokan_after_store_tabs', 'WeDevs\DokanPro\StoreShare', 'render_share_button' , 1 );
+					}
 				}
 			}
 		}
@@ -315,13 +315,13 @@ if ( ! function_exists( 'electro_dokan_vendor_product_search' ) ) {
 		$navbar_search_text = apply_filters( 'electro_vendor_search_placeholder', esc_html__( 'Search this Store', 'electro' ) );
 		?>
 		<li class="dokan-vendor-products-search-wrap">
-			<form class="vendor-products-search" method="get" action="<?php echo dokan_get_store_url( $store_id ); ?>" autocomplete="off">
+			<form class="vendor-products-search" method="get" action="<?= esc_attr(dokan_get_store_url( $store_id )); ?>" autocomplete="off">
 				<label class="sr-only screen-reader-text visually-hidden" for="search">
-					<?php echo esc_html__( 'Search for:', 'electro' );?>
+					<?= esc_html__( 'Search for:', 'electro' );?>
 				</label>
 				<div class="dokan-vendor-product-search-fields">
-		    		<input type="text" id="search" class="form-control search-field vendor-products-search-field product-search-field" dir="<?php echo esc_attr( $dir_value ); ?>" value="<?php echo esc_attr( get_search_query() ); ?>" name="s" placeholder="<?php echo esc_attr( $navbar_search_text ); ?>" autocomplete="off" />
-		    		<input type="hidden" name="paged" value="1" />
+					<input type="text" id="search" class="form-control search-field vendor-products-search-field product-search-field" dir="<?= esc_attr( $dir_value ); ?>" value="<?= esc_attr( get_search_query() ); ?>" name="s" placeholder="<?= esc_attr( $navbar_search_text ); ?>" autocomplete="off" />
+					<input type="hidden" name="paged" value="1" />
 					<button type="submit" class="vendor-products-search-submit-btn">
 						<i class="ec ec-search"></i>
 					</button>
@@ -377,10 +377,10 @@ if ( ! function_exists( 'electro_dokan_vendor_control_bar' ) ) {
 			<form class="woocommerce-ordering" method="get">
 				<select name="orderby" class="orderby" aria-label="<?php esc_attr_e( 'Seller Items order', 'electro' ); ?>">
 					<?php foreach ( $catalog_orderby_options as $id => $name ) : ?>
-						<option value="<?php echo esc_attr( $id ); ?>" <?php selected( $orderby, $id ); ?>><?php echo esc_html( $name ); ?></option>
+						<option value="<?= esc_attr( $id ); ?>" <?php selected( $orderby, $id ); ?>><?= esc_html( $name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<input type="hidden" name="author" value="<?php print_r(esc_attr( $store_id )); ?>" />
+				<input type="hidden" name="author" value="<?= esc_attr( $store_id ); ?>" />
 				<input type="hidden" name="post_type" value="product" />
 				<?php wc_query_string_form_fields( null, array( 'orderby', 'submit', 'paged', 'product-page' ) ); ?>
 			</form>
@@ -397,23 +397,26 @@ if ( ! function_exists( 'electro_dokan_sidebar_header' ) ) {
 
 if ( ! function_exists( 'electro_dokan_store_jumbotron' ) ) {
 	function electro_dokan_store_jumbotron() {
+		$response = "";
 		if( function_exists( 'dokan_is_store_page' ) && dokan_is_store_page() ) {
 			$static_block_id = apply_filters( 'electro_dokan_store_top_jumbotron_id', '' );
 		}
 
 		if( ! empty( $static_block_id ) ) {
-            if ( is_elementor_activated() ) {
-                $content = \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $static_block_id );
-            }
+			if ( is_elementor_activated() ) {
+				$content = \Elementor\Plugin::$instance->frontend->get_builder_content_for_display( $static_block_id );
+			}
 
-            if( empty( $content ) ) {
-                $static_block = get_post( $static_block_id );
-                $content = do_shortcode( $static_block->post_content );
-            }
+			if( empty( $content ) ) {
+				$static_block = get_post( $static_block_id );
+				$content = do_shortcode( $static_block->post_content );
+			}
 
-            print_r( '<div class="dokan-store-top-jumbotron">' . $content . '</div>' );
-        }
+			$response = '<div class="dokan-store-top-jumbotron">' . $content . '</div>';
+		}
 	}
+
+	return $response;
 }
 
 if ( ! function_exists( 'electro_dokan_store_owner_info' ) ) {
@@ -422,20 +425,20 @@ if ( ! function_exists( 'electro_dokan_store_owner_info' ) ) {
 			?>
 			<div class="widget-store-owner">
 				<div class="store-owner-title">
-					<h3 class="widget-title"><?php print_r( apply_filters( 'electro_dokan_store_owner_info_title', esc_html__( 'Owner of Store', 'electro' ) ) ) ?></h3>
+					<h3 class="widget-title"><?= apply_filters( 'electro_dokan_store_owner_info_title', esc_html__( 'Owner of Store', 'electro' ) ) ?></h3>
 				</div>
 				<div class="store-owner-info">
 					<div class="store-owner-profile">
 						<div class="store-owner-avatar">
-							<?php print_r( get_avatar( $store_user_data->ID ) ); ?>
+							<?= get_avatar( $store_user_data->ID ); ?>
 						</div>
 						<div class="store-owner-profile-info">
-							<h5 class="owner-name"><?php print_r( esc_html( $store_user_data->display_name ) ); ?></h5>
+							<h5 class="owner-name"><?= esc_html( $store_user_data->display_name ); ?></h5>
 							<div class="owner-joined"><?php printf( esc_html__( 'Since %s', 'electro' ), date( "d M Y", strtotime( $store_user_data->user_registered ) ) ); ?></div>
 						</div>
 					</div>
 					<div class="store-owner-bio">
-						<?php echo get_the_author_meta( 'description', $store_user_data->ID ); ?>
+						<?= get_the_author_meta( 'description', $store_user_data->ID ); ?>
 					</div>
 				</div>
 			</div>
