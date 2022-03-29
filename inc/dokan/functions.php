@@ -397,7 +397,7 @@ if ( ! function_exists( 'electro_dokan_sidebar_header' ) ) {
 
 if ( ! function_exists( 'electro_dokan_store_jumbotron' ) ) {
 	function electro_dokan_store_jumbotron() {
-		$response = "";
+		$jumbotron = "";
 		if( function_exists( 'dokan_is_store_page' ) && dokan_is_store_page() ) {
 			$static_block_id = apply_filters( 'electro_dokan_store_top_jumbotron_id', '' );
 		}
@@ -412,11 +412,11 @@ if ( ! function_exists( 'electro_dokan_store_jumbotron' ) ) {
 				$content = do_shortcode( $static_block->post_content );
 			}
 
-			$response = '<div class="dokan-store-top-jumbotron">' . $content . '</div>';
+			$jumbotron = '<div class="dokan-store-top-jumbotron">' . $content . '</div>';
 		}
 	}
 
-	return $response;
+	return $jumbotron;
 }
 
 if ( ! function_exists( 'electro_dokan_store_owner_info' ) ) {
@@ -425,7 +425,7 @@ if ( ! function_exists( 'electro_dokan_store_owner_info' ) ) {
 			?>
 			<div class="widget-store-owner">
 				<div class="store-owner-title">
-					<h3 class="widget-title"><?= apply_filters( 'electro_dokan_store_owner_info_title', esc_html__( 'Owner of Store', 'electro' ) ) ?></h3>
+					<h3 class="widget-title"><?= esc_html(apply_filters( 'electro_dokan_store_owner_info_title', esc_html__( 'Owner of Store', 'electro' ) )) ?></h3>
 				</div>
 				<div class="store-owner-info">
 					<div class="store-owner-profile">
@@ -438,7 +438,7 @@ if ( ! function_exists( 'electro_dokan_store_owner_info' ) ) {
 						</div>
 					</div>
 					<div class="store-owner-bio">
-						<?= get_the_author_meta( 'description', $store_user_data->ID ); ?>
+						<?= esc_html(get_the_author_meta( 'description', $store_user_data->ID )); ?>
 					</div>
 				</div>
 			</div>
