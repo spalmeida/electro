@@ -176,12 +176,12 @@ if ( ! function_exists( 'electro_mode_switcher' ) ) {
         if ( apply_filters( 'electro_enable_mode_switcher', true ) ) :
         ?><div class="electro-mode-switcher">
             <a class="data-block electro-mode-switcher-item dark" href="#dark" data-mode="dark">
-                <span class="d-block electro-mode-switcher-item-state"><?php echo esc_html__( 'Dark', 'electro' ); ?></span>
+                <span class="d-block electro-mode-switcher-item-state"><?= esc_html(esc_html__( 'Dark', 'electro' )); ?></span>
             </a>
             <a class="d-block electro-mode-switcher-item light" href="#light" data-mode="light">
-                <span class="d-block electro-mode-switcher-item-state"><?php echo esc_html__( 'Light', 'electro' ); ?></span>
+                <span class="d-block electro-mode-switcher-item-state"><?= esc_html(esc_html__( 'Light', 'electro' )); ?></span>
             </a>
-        </div><?php
+            </div><?php
         endif;
     }
 }
@@ -221,39 +221,39 @@ if ( ! function_exists( 'electro_top_bar' ) ) {
 
         if ( apply_filters( 'electro_enable_top_bar', true ) ) : ?>
 
-        <?php
-
-        if ( has_electro_mobile_header() ) {
-            if ( apply_filters( 'electro_hide_top_bar_in_mobile', true ) ) {
-                $top_bar_classes .= ' hidden-lg-down d-none d-xl-block';
-            }
-        }
-
-        ?>
-
-        <div class="<?php echo esc_attr( $top_bar_classes ); ?>">
-            <div class="container clearfix">
             <?php
-                wp_nav_menu( array(
-                    'theme_location'    => 'topbar-left',
-                    'container'         => false,
-                    'depth'             => 2,
-                    'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
-                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                    'walker'            => new wp_bootstrap_navwalker()
-                ) );
 
-                wp_nav_menu( array(
-                    'theme_location'    => 'topbar-right',
-                    'container'         => false,
-                    'depth'             => 2,
-                    'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
-                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                    'walker'            => new wp_bootstrap_navwalker()
-                ) );
+            if ( has_electro_mobile_header() ) {
+                if ( apply_filters( 'electro_hide_top_bar_in_mobile', true ) ) {
+                    $top_bar_classes .= ' hidden-lg-down d-none d-xl-block';
+                }
+            }
+
             ?>
-            </div>
-        </div><!-- /.top-bar -->
+
+            <div class="<?= esc_attr( $top_bar_classes ); ?>">
+                <div class="container clearfix">
+                    <?php
+                    wp_nav_menu( array(
+                        'theme_location'    => 'topbar-left',
+                        'container'         => false,
+                        'depth'             => 2,
+                        'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
+                        'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                        'walker'            => new wp_bootstrap_navwalker()
+                    ) );
+
+                    wp_nav_menu( array(
+                        'theme_location'    => 'topbar-right',
+                        'container'         => false,
+                        'depth'             => 2,
+                        'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
+                        'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                        'walker'            => new wp_bootstrap_navwalker()
+                    ) );
+                    ?>
+                </div>
+            </div><!-- /.top-bar -->
 
         <?php endif;
     }
@@ -277,9 +277,9 @@ if ( ! function_exists( 'electro_top_bar_center' ) ) {
             }
             ?>
 
-            <div class="<?php echo esc_attr( $top_bar_classes ); ?>">
+            <div class="<?= esc_attr( $top_bar_classes ); ?>">
                 <div class="container clearfix">
-                <?php
+                    <?php
                     wp_nav_menu( array(
                         'theme_location'    => 'topbar-center',
                         'container'         => false,
@@ -288,7 +288,7 @@ if ( ! function_exists( 'electro_top_bar_center' ) ) {
                         'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
                         'walker'            => new wp_bootstrap_navwalker()
                     ) );
-                ?>
+                    ?>
                 </div>
             </div><!-- /.top-bar -->
 
@@ -307,39 +307,39 @@ if ( ! function_exists( 'electro_top_bar_v2' ) ) {
 
         if ( apply_filters( 'electro_enable_top_bar', true ) ) : ?>
 
-        <?php
-
-        if ( has_electro_mobile_header() ) {
-            if ( apply_filters( 'electro_hide_top_bar_in_mobile', true ) ) {
-                $top_bar_classes .= ' hidden-lg-down d-none d-xl-block';
-            }
-        }
-
-        ?>
-
-        <div class="<?php echo esc_attr( $top_bar_classes ); ?>">
-            <div class="container clearfix">
             <?php
-                wp_nav_menu( array(
-                    'theme_location'    => 'header-support',
-                    'container'         => false,
-                    'depth'             => 2,
-                    'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
-                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                    'walker'            => new wp_bootstrap_navwalker()
-                ) );
 
-                wp_nav_menu( array(
-                    'theme_location'    => 'topbar-right',
-                    'container'         => false,
-                    'depth'             => 2,
-                    'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
-                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                    'walker'            => new wp_bootstrap_navwalker()
-                ) );
+            if ( has_electro_mobile_header() ) {
+                if ( apply_filters( 'electro_hide_top_bar_in_mobile', true ) ) {
+                    $top_bar_classes .= ' hidden-lg-down d-none d-xl-block';
+                }
+            }
+
             ?>
-            </div>
-        </div><!-- /.top-bar-v2 -->
+
+            <div class="<?= esc_attr( $top_bar_classes ); ?>">
+                <div class="container clearfix">
+                    <?php
+                    wp_nav_menu( array(
+                        'theme_location'    => 'header-support',
+                        'container'         => false,
+                        'depth'             => 2,
+                        'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
+                        'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                        'walker'            => new wp_bootstrap_navwalker()
+                    ) );
+
+                    wp_nav_menu( array(
+                        'theme_location'    => 'topbar-right',
+                        'container'         => false,
+                        'depth'             => 2,
+                        'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
+                        'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                        'walker'            => new wp_bootstrap_navwalker()
+                    ) );
+                    ?>
+                </div>
+            </div><!-- /.top-bar-v2 -->
 
         <?php endif;
     }
@@ -362,7 +362,7 @@ if ( ! function_exists( 'electro_top_bar_v3' ) ) {
 
             $enable_topbar_additional_links = apply_filters( 'electro_enable_top_bar_v3_additional_links', true );
             ?>
-            <div class="<?php echo esc_attr( $top_bar_classes ); ?>">
+            <div class="<?= esc_attr( $top_bar_classes ); ?>">
                 <div class="container clearfix position-relative">
                     <?php if ( $enable_topbar_additional_links ) {
                         $topbar_additional_links_title = apply_filters( 'electro_top_bar_v3_additional_links_title', __( 'Two Shops<br>One Shipment', 'electro' ) );
@@ -376,35 +376,41 @@ if ( ! function_exists( 'electro_top_bar_v3' ) ) {
                         $topbar_additional_link_2_image = apply_filters( 'electro_top_bar_v3_additional_link_2_image', '' );
 
                         if( ! empty( $topbar_additional_links_title ) ) {
-                            ?><span class="additional-links-label position-absolute r-100 text-end d-flex align-items-center"><?php echo wp_kses_post( $topbar_additional_links_title ); ?></span><?php
+                            ?><span class="additional-links-label position-absolute r-100 text-end d-flex align-items-center"><?= esc_html(wp_kses_post( $topbar_additional_links_title )); ?></span><?php
                         }
                         if( ( ! empty( $topbar_additional_link_1_text ) && ! empty( $topbar_additional_link_1_url ) ) || ( ! empty( $topbar_additional_link_2_text ) && ! empty( $topbar_additional_link_2_url ) ) ) {
                             ?><ul class="additional-links float-start list-unstyled mb-0 d-flex align-items-center position-relative"><?php
-                                if( ( ! empty( $topbar_additional_link_1_text ) && ! empty( $topbar_additional_link_1_url ) ) ) {
-                                    ?>
-                                    <li class="additional-item">
-                                        <a class="additional-item-link d-flex align-items-center" href="<?php echo esc_attr( $topbar_additional_link_1_url ); ?>">
-                                            <?php if ( ! empty( $topbar_additional_link_1_image ) && $topbar_additional_link_1_image > 0 ) {
-                                                echo wp_get_attachment_image( $topbar_additional_link_1_image, array( '30', '30' ), false, array( "class" => "img-fluid" ) );
-                                            } ?>
-                                            <span class="additional-item-label"><?php echo wp_kses_post( $topbar_additional_link_1_text ); ?></span>
-                                        </a>
-                                    </li>
-                                    <?php
-                                }
+                            if( ( ! empty( $topbar_additional_link_1_text ) && ! empty( $topbar_additional_link_1_url ) ) ) {
+                                ?>
+                                <li class="additional-item">
+                                    <a class="additional-item-link d-flex align-items-center" href="<?= esc_attr( $topbar_additional_link_1_url ); ?>">
+                                        <?php 
+                                        if ( ! empty( $topbar_additional_link_1_image ) && $topbar_additional_link_1_image > 0 ) {
+                                            $topbar_get_image = wp_get_attachment_image( $topbar_additional_link_1_image, array( '30', '30' ), false, array( "class" => "img-fluid" ) );
+                                        } 
+                                        ?>
+                                        <?= esc_html($topbar_get_image); ?>
+                                        <span class="additional-item-label">
+                                            <?= esc_html(wp_kses_post( $topbar_additional_link_1_text )); ?>
+                                                
+                                            </span>
+                                    </a>
+                                </li>
+                                <?php
+                            }
 
-                                if( ( ! empty( $topbar_additional_link_2_text ) && ! empty( $topbar_additional_link_2_url ) ) ) {
-                                    ?>
-                                    <li class="additional-item">
-                                        <a class="additional-item-link d-flex align-items-center" href="<?php echo esc_attr( $topbar_additional_link_2_url ); ?>">
-                                            <?php if ( ! empty( $topbar_additional_link_2_image ) && $topbar_additional_link_2_image > 0 ) {
-                                                echo wp_get_attachment_image( $topbar_additional_link_2_image, array( '30', '30' ), false, array( "class" => "img-fluid" ) );
-                                            } ?>
-                                            <span class="additional-item-label"><?php echo wp_kses_post( $topbar_additional_link_2_text ); ?></span>
-                                        </a>
-                                    </li>
-                                    <?php
-                                }
+                            if( ( ! empty( $topbar_additional_link_2_text ) && ! empty( $topbar_additional_link_2_url ) ) ) {
+                                ?>
+                                <li class="additional-item">
+                                    <a class="additional-item-link d-flex align-items-center" href="<?= esc_attr( $topbar_additional_link_2_url ); ?>">
+                                        <?php if ( ! empty( $topbar_additional_link_2_image ) && $topbar_additional_link_2_image > 0 ) {
+                                            echo wp_get_attachment_image( $topbar_additional_link_2_image, array( '30', '30' ), false, array( "class" => "img-fluid" ) );
+                                        } ?>
+                                        <span class="additional-item-label"><?php echo wp_kses_post( $topbar_additional_link_2_text ); ?></span>
+                                    </a>
+                                </li>
+                                <?php
+                            }
                             ?></ul><?php
                         }
                     } ?>
@@ -453,31 +459,31 @@ if ( ! function_exists( 'electro_top_bar_v4' ) ) {
 				}
 			}
 
-			?><div class="<?php echo esc_attr( $top_bar_classes ); ?>">
-                <div class="container clearfix">
-                    <?php
-                        wp_nav_menu( array(
-                            'theme_location'    => 'topbar-left',
-                            'container'         => false,
-                            'depth'             => 2,
-                            'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
-                            'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                            'walker'            => new wp_bootstrap_navwalker()
-                        ) );
+     ?><div class="<?php echo esc_attr( $top_bar_classes ); ?>">
+        <div class="container clearfix">
+            <?php
+            wp_nav_menu( array(
+                'theme_location'    => 'topbar-left',
+                'container'         => false,
+                'depth'             => 2,
+                'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
+                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                'walker'            => new wp_bootstrap_navwalker()
+            ) );
 
-                        wp_nav_menu( array(
-                            'theme_location'    => 'topbar-right',
-                            'container'         => false,
-                            'depth'             => 2,
-                            'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
-                            'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                            'walker'            => new wp_bootstrap_navwalker()
-                        ) );
-                    ?>
-                </div>
-            </div><!-- /.top-bar-v2 --><?php
-		endif;
-	}
+            wp_nav_menu( array(
+                'theme_location'    => 'topbar-right',
+                'container'         => false,
+                'depth'             => 2,
+                'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
+                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                'walker'            => new wp_bootstrap_navwalker()
+            ) );
+            ?>
+        </div>
+        </div><!-- /.top-bar-v2 --><?php
+    endif;
+}
 }
 
 if ( ! function_exists( 'electro_top_bar_v5' ) ) {
@@ -496,28 +502,28 @@ if ( ! function_exists( 'electro_top_bar_v5' ) ) {
                 }
             }
 
-            ?><div class="<?php echo esc_attr( $top_bar_classes ); ?>">
-                <div class="container clearfix">
-                    <?php
-                        wp_nav_menu( array(
-                            'theme_location'    => 'topbar-left',
-                            'container'         => false,
-                            'depth'             => 2,
-                            'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
-                            'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                            'walker'            => new wp_bootstrap_navwalker()
-                        ) );
+        ?><div class="<?php echo esc_attr( $top_bar_classes ); ?>">
+            <div class="container clearfix">
+                <?php
+                wp_nav_menu( array(
+                    'theme_location'    => 'topbar-left',
+                    'container'         => false,
+                    'depth'             => 2,
+                    'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
+                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                    'walker'            => new wp_bootstrap_navwalker()
+                ) );
 
-                        wp_nav_menu( array(
-                            'theme_location'    => 'topbar-right',
-                            'container'         => false,
-                            'depth'             => 2,
-                            'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
-                            'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                            'walker'            => new wp_bootstrap_navwalker()
-                        ) );
-                    ?>
-                </div>
+                wp_nav_menu( array(
+                    'theme_location'    => 'topbar-right',
+                    'container'         => false,
+                    'depth'             => 2,
+                    'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
+                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                    'walker'            => new wp_bootstrap_navwalker()
+                ) );
+                ?>
+            </div>
             </div><!-- /.top-bar-v2 --><?php
         endif;
     }
@@ -539,28 +545,28 @@ if ( ! function_exists( 'electro_top_bar_v6' ) ) {
                 }
             }
 
-            ?><div class="<?php echo esc_attr( $top_bar_classes ); ?>">
-                <div class="container clearfix">
-                    <?php
-                        wp_nav_menu( array(
-                            'theme_location'    => 'topbar-left',
-                            'container'         => false,
-                            'depth'             => 2,
-                            'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
-                            'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                            'walker'            => new wp_bootstrap_navwalker()
-                        ) );
+        ?><div class="<?php echo esc_attr( $top_bar_classes ); ?>">
+            <div class="container clearfix">
+                <?php
+                wp_nav_menu( array(
+                    'theme_location'    => 'topbar-left',
+                    'container'         => false,
+                    'depth'             => 2,
+                    'menu_class'        => 'nav nav-inline float-start electro-animate-dropdown flip',
+                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                    'walker'            => new wp_bootstrap_navwalker()
+                ) );
 
-                        wp_nav_menu( array(
-                            'theme_location'    => 'topbar-right',
-                            'container'         => false,
-                            'depth'             => 2,
-                            'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
-                            'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                            'walker'            => new wp_bootstrap_navwalker()
-                        ) );
-                    ?>
-                </div>
+                wp_nav_menu( array(
+                    'theme_location'    => 'topbar-right',
+                    'container'         => false,
+                    'depth'             => 2,
+                    'menu_class'        => 'nav nav-inline float-end electro-animate-dropdown flip',
+                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                    'walker'            => new wp_bootstrap_navwalker()
+                ) );
+                ?>
+            </div>
             </div><!-- /.top-bar-v2 --><?php
         endif;
     }
@@ -573,19 +579,19 @@ if ( ! function_exists( 'electro_container_wrap_start' ) ) {
     function electro_container_wrap_start() {
         ?>
         <div class="container">
-        <?php
+            <?php
+        }
     }
-}
 
-if ( ! function_exists( 'electro_container_wrap_end' ) ) {
+    if ( ! function_exists( 'electro_container_wrap_end' ) ) {
     /**
      * Closes container wrapper
      */
     function electro_container_wrap_end() {
         ?>
-        </div><!-- /.container -->
-        <?php
-    }
+    </div><!-- /.container -->
+    <?php
+}
 }
 
 if ( ! function_exists ( 'electro_header_dark_logo' ) ) {
@@ -594,7 +600,7 @@ if ( ! function_exists ( 'electro_header_dark_logo' ) ) {
      *
      */
     function electro_header_dark_logo( $anchor_classes = '' ) {
-        
+
         $dark_logo_attr = apply_filters( 'electro_dark_logo_attr', '' );
 
         if ( isset( $dark_logo_attr[ 'url' ] ) && ! empty( $dark_logo_attr[ 'url' ] ) ) {
@@ -619,9 +625,9 @@ if ( ! function_exists ( 'electro_header_dark_logo' ) ) {
                 $logo_anchor_classes .= ' ' . $anchor_classes;
             }
 
-            ?><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo esc_attr( $logo_anchor_classes ); ?>">
-				<img <?php echo electro_render_attributes( $img_attr ); ?> />
-			</a><?php
+        ?><a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="<?php echo esc_attr( $logo_anchor_classes ); ?>">
+            <img <?php echo electro_render_attributes( $img_attr ); ?> />
+            </a><?php
         }
     }
 }
@@ -649,7 +655,7 @@ if ( ! function_exists ( 'electro_header_logo' ) ) {
                         <?php electro_get_template( 'global/logo-svg.php' ); ?>
                     </a>
                 </div>
-            <?php
+                <?php
             }
             echo apply_filters( 'electro_header_logo_html', ob_get_clean() );
         }
@@ -664,25 +670,25 @@ if ( ! function_exists( 'electro_primary_nav' ) ) {
         ?>
         <div class="primary-nav animate-dropdown">
             <div class="clearfix">
-                 <button class="navbar-toggler hidden-sm-up float-end flip" type="button" data-bs-toggle="collapse" data-bs-target="#default-header">
-                        &#9776;
-                 </button>
-             </div>
-
-            <div class="collapse navbar-toggleable-xs" id="default-header">
-                <?php
-                    wp_nav_menu( array(
-                        'theme_location'    => 'primary-nav',
-                        'container'         => false,
-                        'menu_class'        => 'nav nav-inline yamm',
-                        'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                        'walker'            => new wp_bootstrap_navwalker()
-                    ) );
-                ?>
-            </div>
+               <button class="navbar-toggler hidden-sm-up float-end flip" type="button" data-bs-toggle="collapse" data-bs-target="#default-header">
+                &#9776;
+            </button>
         </div>
-        <?php
-    }
+
+        <div class="collapse navbar-toggleable-xs" id="default-header">
+            <?php
+            wp_nav_menu( array(
+                'theme_location'    => 'primary-nav',
+                'container'         => false,
+                'menu_class'        => 'nav nav-inline yamm',
+                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                'walker'            => new wp_bootstrap_navwalker()
+            ) );
+            ?>
+        </div>
+    </div>
+    <?php
+}
 }
 
 if ( ! function_exists( 'electro_get_handheld_header_version' ) ) {
@@ -699,24 +705,24 @@ if ( ! function_exists( 'electro_handheld_header' ) ) {
         $version = electro_get_handheld_header_version();
         switch ( $version ) {
             case 'handheld-v1':
-                electro_handheld_header_v1();
-                break;
+            electro_handheld_header_v1();
+            break;
 
             case 'handheld-v2':
-                electro_handheld_header_v2();
-                break;
+            electro_handheld_header_v2();
+            break;
 
             case 'mobile-v1':
-                electro_mobile_header_v1();
-                break;
+            electro_mobile_header_v1();
+            break;
 
             case 'mobile-v2':
-                electro_mobile_header_v2();
-                break;
+            electro_mobile_header_v2();
+            break;
 
             default:
-                electro_handheld_header_v2();
-                break;
+            electro_handheld_header_v2();
+            break;
         }
     }
 }
@@ -853,13 +859,13 @@ if ( ! function_exists( 'electro_handheld_nav' ) ) {
             <div class="handheld-navigation hidden-lg-up" id="default-hh-header">
                 <span class="ehm-close"><?php _e( 'Close', 'electro' ); ?></span>
                 <?php
-                    wp_nav_menu( array(
-                        'theme_location'    => 'hand-held-nav',
-                        'container'         => false,
-                        'menu_class'        => 'nav nav-inline yamm',
-                        'fallback_cb'       => 'electro_handheld_nav_fallback',
-                        'walker'            => new wp_bootstrap_navwalker()
-                    ) );
+                wp_nav_menu( array(
+                    'theme_location'    => 'hand-held-nav',
+                    'container'         => false,
+                    'menu_class'        => 'nav nav-inline yamm',
+                    'fallback_cb'       => 'electro_handheld_nav_fallback',
+                    'walker'            => new wp_bootstrap_navwalker()
+                ) );
                 ?>
             </div>
         </div>
@@ -875,14 +881,14 @@ if ( ! function_exists( 'electro_mobile_handheld_department' ) ) {
         ?>
         <div class="mobile-handheld-department">
             <?php
-                wp_nav_menu( array(
-                    'theme_location'    => 'mobile-handheld-department',
-                    'container'         => false,
-                    'depth'             => 1,
-                    'menu_class'        => 'nav',
-                    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
-                    'walker'            => new wp_bootstrap_navwalker(),
-                ) );
+            wp_nav_menu( array(
+                'theme_location'    => 'mobile-handheld-department',
+                'container'         => false,
+                'depth'             => 1,
+                'menu_class'        => 'nav',
+                'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+                'walker'            => new wp_bootstrap_navwalker(),
+            ) );
             ?>
         </div>
         <?php
@@ -911,13 +917,13 @@ if ( ! function_exists( 'electro_off_canvas_nav' ) ) {
 
             <div class="off-canvas-navigation<?php if ( ! electro_is_dark_enabled() ): ?> light<?php endif; ?>" id="default-oc-header">
                 <?php
-                    wp_nav_menu( array(
-                        'theme_location'    => 'hand-held-nav',
-                        'container'         => false,
-                        'menu_class'        => 'nav nav-inline yamm',
-                        'fallback_cb'       => 'electro_handheld_nav_fallback',
-                        'walker'            => new wp_bootstrap_navwalker()
-                    ) );
+                wp_nav_menu( array(
+                    'theme_location'    => 'hand-held-nav',
+                    'container'         => false,
+                    'menu_class'        => 'nav nav-inline yamm',
+                    'fallback_cb'       => 'electro_handheld_nav_fallback',
+                    'walker'            => new wp_bootstrap_navwalker()
+                ) );
                 ?>
             </div>
         </div>
@@ -1028,20 +1034,20 @@ if ( ! function_exists( 'electro_header_support_info' ) ) {
         $support_icon   = apply_filters( 'electro_header_support_icon', 'ec ec-support' );
 
         if ( apply_filters( 'electro_show_header_support_info', true ) ) : ?>
-        <div class="header-support-info">
-            <div class="media">
-                <span class="media-left support-icon media-middle"><i class="<?php echo esc_attr( $support_icon ); ?>"></i></span>
-                <div class="media-body">
-                    <span class="support-number"><?php echo wp_kses_post( $support_number ); ?></span><br/>
-                    <span class="support-email"><?php echo wp_kses_post( $support_email ); ?></span>
+            <div class="header-support-info">
+                <div class="media">
+                    <span class="media-left support-icon media-middle"><i class="<?php echo esc_attr( $support_icon ); ?>"></i></span>
+                    <div class="media-body">
+                        <span class="support-number"><?php echo wp_kses_post( $support_number ); ?></span><br/>
+                        <span class="support-email"><?php echo wp_kses_post( $support_email ); ?></span>
+                    </div>
                 </div>
-            </div>
-        </div><?php
-        endif;
+                </div><?php
+            endif;
+        }
     }
-}
 
-if ( ! function_exists( 'electro_header_search_box' ) ) {
+    if ( ! function_exists( 'electro_header_search_box' ) ) {
     /**
      * Displays search box at the header
      */
