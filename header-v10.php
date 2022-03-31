@@ -9,22 +9,22 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-<?php wp_head(); ?>
+    <?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
     <?php
-	wp_body_open();
-	?>
-<div class="off-canvas-wrapper w-100 position-relative">
-<div id="page" class="hfeed site">
-    
-    <?php
+    wp_body_open();
+    ?>
+    <div class="off-canvas-wrapper w-100 position-relative">
+        <div id="page" class="hfeed site">
+            
+            <?php
     /**
      * Functions hooked into electro_before_header_v10 action
      *
@@ -34,10 +34,10 @@
 
     <?php if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) : ?>
 
-        <header id="masthead" class="site-header header-v10">
-            <div class="stick-this">
-                <div class="container <?php echo esc_attr( has_electro_mobile_header() ? electro_desktop_header_responsive_class() : '' );  ?>">
-                    <?php
+    <header id="masthead" class="site-header header-v10">
+        <div class="stick-this">
+            <div class="container <?php esc_attr_e( has_electro_mobile_header() ? electro_desktop_header_responsive_class() : '' );  ?>">
+                <?php
                     /**
                      * Functions hooked into electro_header_v10 action.
                      *
@@ -66,7 +66,7 @@
 
     <div id="content" class="site-content" tabindex="-1">
         <div class="container">
-        <?php
+            <?php
         /**
          * @hooked woocommerce_breadcrumb - 10
          */

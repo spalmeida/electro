@@ -54,7 +54,7 @@ if ( ! function_exists( 'electro_posted_on' ) ) {
 			_x( '%s', 'post date', 'electro' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
-		echo wp_kses( apply_filters( 'electro_single_post_posted_on_html', '<span class="posted-on">' . $posted_on . '</span>', $posted_on ), array(
+		$wp_kses_filter = wp_kses( apply_filters( 'electro_single_post_posted_on_html', '<span class="posted-on">' . $posted_on . '</span>', $posted_on ), array(
 			'span' => array(
 				'class'  => array(),
 			),
@@ -68,6 +68,9 @@ if ( ! function_exists( 'electro_posted_on' ) ) {
 				'class'    => array(),
 			),
 		 ) );
+
+		esc_html_e($wp_kses_filter);
+
 	}
 }
 
@@ -86,9 +89,7 @@ if ( ! function_exists( 'electro_post_meta' ) ) {
 			$categories_list = get_the_category_list( __( ', ', 'electro' ) );
 			if ( $categories_list ) : ?>
 				<span class="cat-links">
-					<?php
-					echo wp_kses_post( $categories_list );
-					?>
+					<?php esc_html_e(wp_kses_post( $categories_list )); ?>
 				</span>
 			<?php endif; // End if categories. ?>
 
@@ -97,9 +98,7 @@ if ( ! function_exists( 'electro_post_meta' ) ) {
 			$tags_list = get_the_tag_list( '', __( ', ', 'electro' ) );
 			if ( $tags_list && apply_filters( 'electro_is_single_post_tags_list', false ) ) : ?>
 				<span class="tags-links">
-					<?php
-					echo wp_kses_post( $tags_list );
-					?>
+					<?php esc_html_e(wp_kses_post( $tags_list )); ?>
 				</span>
 			<?php endif; // End if $tags_list. ?>
 
@@ -222,13 +221,13 @@ if( ! function_exists( 'electro_author_info' ) ) {
 			<div class="post-author-info">
 				<div class="media d-md-flex">
 					<div class="media-left media-middle">
-						<a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
-							<?php echo get_avatar( get_the_author_meta( 'ID' ) , 160 ); ?>
+						<a href="<?php esc_html_e(get_author_posts_url( get_the_author_meta( 'ID' ) )); ?>">
+							<?php esc_html_e(get_avatar( get_the_author_meta( 'ID' ) , 160 )); ?>
 						</a>
 					</div>
 					<div class="media-body">
-						<h4 class="media-heading"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php echo get_the_author(); ?></a></h4>
-						<p><?php echo get_the_author_meta( 'description' );?></p>
+						<h4 class="media-heading"><a href="<?php esc_html_e(get_author_posts_url( get_the_author_meta( 'ID' ) )); ?>"><?php esc_html_e(get_the_author()); ?></a></h4>
+						<p><?php esc_html_e(get_the_author_meta( 'description' ));?></p>
 					</div>
 				</div>
 			</div>
@@ -244,9 +243,7 @@ if( ! function_exists( 'electro_post_loop_media' ) ) {
 		if( $blog_style != 'blog-list' && $blog_style != 'blog-grid' ) {
 			electro_post_media_attachment();
 		} else {
-			echo '<div class="media-attachment">';
-			electro_post_thumbnail();
-			echo '</div>';
+			esc_html_e('<div class="media-attachment">'. electro_post_thumbnail() . '</div>');
 		}
 	}
 }
@@ -275,7 +272,7 @@ if ( ! function_exists( 'electro_post_thumbnail' ) ) {
 		$should_link 			= is_single() ? false : true;
 		$enable_placeholder_img = is_single() ? false : apply_filters( 'electro_loop_post_placeholder_img', true );
 
-		echo electro_get_thumbnail( get_the_ID(), $image_size, $enable_placeholder_img, $should_link, $post_icon );
+		esc_html_e(electro_get_thumbnail( get_the_ID(), $image_size, $enable_placeholder_img, $should_link, $post_icon ));
 	}
 }
 
@@ -332,7 +329,7 @@ if( ! function_exists( 'electro_post_readmore' ) ) {
 	 */
 	function electro_post_readmore() {
 		?>
-		<div class="post-readmore"><a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php echo apply_filters( 'electro_blog_post_readmore_text', esc_html__( 'Read More', 'electro' ) ); ?></a></div>
+		<div class="post-readmore"><a href="<?php the_permalink(); ?>" class="btn btn-primary"><?php esc_html_e(apply_filters( 'electro_blog_post_readmore_text', esc_html__( 'Read More', 'electro' ) )); ?></a></div>
 		<?php
 	}
 }
@@ -362,7 +359,7 @@ if( ! function_exists( 'electro_post_media_attachment' ) ) {
 		$media_attachment = ob_get_clean();
 
 		if( ! empty( $media_attachment ) ) {
-			echo '<div class="media-attachment">' . $media_attachment . '</div>';
+			esc_html_e('<div class="media-attachment">' . $media_attachment . '</div>');
 		}
 
 	}
@@ -395,11 +392,11 @@ if ( !function_exists( 'electro_gallery_slideshow' ) ) :
 			wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 		?>
 		<div class="media-attachment-gallery">
-			<div id="owl-carousel-<?php echo esc_attr( $post_id ); ?>" class="owl-carousel owl-inner-pagination owl-inner-nav owl-blog-post-gallery">
+			<div id="owl-carousel-<?php esc_attr_e( $post_id ); ?>" class="owl-carousel owl-inner-pagination owl-inner-nav owl-blog-post-gallery">
 			<?php foreach ($attachments as $attachment): ?>
 				<div class="item">
 					<figure>
-						<?php echo wp_get_attachment_image($attachment->ID, $thumbnail); ?>
+						<?php esc_html_e(wp_get_attachment_image($attachment->ID, $thumbnail)); ?>
 					</figure>
 				</div><!-- /.item -->
 			<?php endforeach; ?>
@@ -410,7 +407,7 @@ if ( !function_exists( 'electro_gallery_slideshow' ) ) :
 
 			jQuery(document).ready(function(){
 				if(jQuery().owlCarousel) {
-					jQuery("#owl-carousel-<?php echo esc_attr( $post_id ); ?>").owlCarousel({
+					jQuery("#owl-carousel-<?php esc_attr_e( $post_id ); ?>").owlCarousel({
 						items : 1,
 						nav : false,
 						slideSpeed : 300,
@@ -483,29 +480,29 @@ if ( !function_exists( 'electro_audio_player' ) ) :
 				jQuery(document).ready(function(){
 
 					if(jQuery().jPlayer) {
-						jQuery("#jquery_jplayer_<?php echo esc_attr( $post_id ); ?>").jPlayer({
+						jQuery("#jquery_jplayer_<?php esc_attr_e( $post_id ); ?>").jPlayer({
 							ready: function (event) {
 
 								// set media
 								jQuery(this).jPlayer("setMedia", {
 								    <?php
 								    if($mp3 != '') :
-										echo 'mp3: "'. $mp3 .'",';
+										esc_html_e('mp3: "'. $mp3 .'",');
 									endif;
 									if($ogg != '') :
-										echo 'oga: "'. $ogg .'",';
+										esc_html_e('oga: "'. $ogg .'",');
 									endif; ?>
 									end: ""
 								});
 							},
 							<?php if( !empty($poster) ) { ?>
 							size: {
-	        				    width: "<?php echo esc_js( $width ); ?>px",
-	        				    height: "<?php echo esc_js( $height . 'px' ); ?>"
+	        				    width: "<?php esc_html_e(esc_js( $width )); ?>px",
+	        				    height: "<?php esc_html_e(esc_js( $height . 'px' )); ?>"
 	        				},
 	        				<?php } ?>
-							swfPath: "<?php echo get_template_directory_uri(); ?>/assets/js",
-							cssSelectorAncestor: "#jp_interface_<?php echo esc_attr( $post_id ); ?>",
+							swfPath: "<?php esc_html_e(get_template_directory_uri()); ?>/assets/js",
+							cssSelectorAncestor: "#jp_interface_<?php esc_attr_e( $post_id ); ?>",
 							supplied: "<?php if($ogg != '') : ?>oga,<?php endif; ?><?php if($mp3 != '') : ?>mp3, <?php endif; ?> all"
 						});
 
@@ -513,12 +510,12 @@ if ( !function_exists( 'electro_audio_player' ) ) :
 				});
 			</script>
 
-			<div id="jquery_jplayer_<?php echo esc_attr( $post_id ); ?>" class="jp-jplayer jp-jplayer-audio"></div>
+			<div id="jquery_jplayer_<?php esc_attr_e( $post_id ); ?>" class="jp-jplayer jp-jplayer-audio"></div>
 
 			<div class="jp-audio-container">
 				<div class="jp-audio">
 					<div class="jp-type-single">
-						<div id="jp_interface_<?php echo esc_attr( $post_id ); ?>" class="jp-interface">
+						<div id="jp_interface_<?php esc_attr_e( $post_id ); ?>" class="jp-interface">
 							<ul class="jp-controls">
 								<li><div class="seperator-first"></div></li>
 								<li><div class="seperator-second"></div></li>
@@ -568,7 +565,7 @@ if ( !function_exists( 'electro_video_player' ) ) :
 		if( !empty($embed) ) {
 			$embed = do_shortcode( $embed );
 			// run oEmbed for known sources to generate embed code from video links
-			echo '<div class="video-container"><div class="embed-responsive embed-responsive-16by9">'. $GLOBALS['wp_embed']->autoembed( stripslashes(htmlspecialchars_decode($embed)) ) .'</div></div>';
+			esc_html_e('<div class="video-container"><div class="embed-responsive embed-responsive-16by9">'. $GLOBALS['wp_embed']->autoembed( stripslashes(htmlspecialchars_decode($embed)) ) .'</div></div>');
 
 			return; // and.... Done!
 		} else if( ! empty( $m4v ) || ! empty ( $ogv ) || ! empty ( $webm ) || ! empty ( $poster ) ) {
@@ -579,43 +576,43 @@ if ( !function_exists( 'electro_video_player' ) ) :
 		    	jQuery(document).ready(function(){
 
 		    		if(jQuery().jPlayer) {
-		    			jQuery("#jquery_jplayer_<?php echo esc_attr( $post_id ); ?>").jPlayer({
+		    			jQuery("#jquery_jplayer_<?php esc_attr_e( $post_id ); ?>").jPlayer({
 		    				ready: function (event) {
 								// mobile display helper
-								// if(event.jPlayer.status.noVolume) {	$('#jp_interface_<?php echo esc_attr( $post_id ); ?>').addClass('no-volume'); }
+								// if(event.jPlayer.status.noVolume) {	$('#jp_interface_<?php esc_attr_e( $post_id ); ?>').addClass('no-volume'); }
 								// set media
 		    					jQuery(this).jPlayer("setMedia", {
 		    						<?php if($m4v != '') : ?>
-		    						m4v: "<?php echo esc_js( $m4v ); ?>",
+		    						m4v: "<?php esc_html_e(esc_js( $m4v )); ?>",
 		    						<?php endif; ?>
 		    						<?php if($ogv != '') : ?>
-		    						ogv: "<?php echo esc_js( $ogv ); ?>",
+		    						ogv: "<?php esc_html_e(esc_js( $ogv )); ?>",
 		    						<?php endif; ?>
 		    						<?php if($webm != '') : ?>
-		    						webmv: "<?php echo esc_js( $webm ); ?>",
+		    						webmv: "<?php esc_html_e(esc_js( $webm )); ?>",
 		    						<?php endif; ?>
 		    						<?php if ($poster != '') : ?>
-		    						poster: "<?php echo esc_js( $poster ); ?>"
+		    						poster: "<?php esc_html_e(esc_js( $poster )); ?>"
 		    						<?php endif; ?>
 		    					});
 		    				},
 		    				size: {
-		    				    width: "<?php echo esc_js( $width ); ?>px",
+		    				    width: "<?php esc_html_e(esc_js( $width )); ?>px",
 		    				},
-		    				swfPath: "<?php echo get_template_directory_uri(); ?>/assets/js",
-		    				cssSelectorAncestor: "#jp_interface_<?php echo esc_attr( $post_id ); ?>",
+		    				swfPath: "<?php esc_html_e(get_template_directory_uri()); ?>/assets/js",
+		    				cssSelectorAncestor: "#jp_interface_<?php esc_attr_e( $post_id ); ?>",
 		    				supplied: "<?php if($m4v != '') : ?>m4v, <?php endif; ?><?php if($ogv != '') : ?>ogv, <?php endif; ?> all"
 		    			});
 		    		}
 		    	});
 		    </script>
 
-		    <div id="jquery_jplayer_<?php echo esc_attr( $post_id ); ?>" class="jp-jplayer jp-jplayer-video"></div>
+		    <div id="jquery_jplayer_<?php esc_attr_e( $post_id ); ?>" class="jp-jplayer jp-jplayer-video"></div>
 
 		    <div class="jp-video-container">
 		        <div class="jp-video">
 		            <div class="jp-type-single">
-		                <div id="jp_interface_<?php echo esc_attr( $post_id ); ?>" class="jp-interface">
+		                <div id="jp_interface_<?php esc_attr_e( $post_id ); ?>" class="jp-interface">
 		                    <ul class="jp-controls">
 		                    	<li><div class="seperator-first"></div></li>
 		                        <li><div class="seperator-second"></div></li>
@@ -660,7 +657,7 @@ if ( ! function_exists( 'electro_blog_navigation' ) ) {
 			<nav id="blog-navigation" class="blog-navigation navbar yamm" aria-label="<?php esc_attr_e( 'Blog Navigation', 'electro' ); ?>">
 				<div class="navbar-header">
 					<button class="navbar-toggle collapsed" data-bs-target="#nav-blog-horizontal-menu-collapse" data-bs-toggle="collapse" type="button">
-						<span class="sr-only"><?php echo esc_html__( 'Toggle navigation', 'electro' ); ?></span>
+						<span class="sr-only"><?php esc_html_e( 'Toggle navigation', 'electro' ); ?></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
