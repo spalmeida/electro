@@ -21,22 +21,22 @@ if ( ! function_exists( 'electro_ads_block' ) ) {
 	 */
 	function electro_ads_block( $args = array() ) {
 		$cols = count( $args );?>
-		<div class="da-block justify-content-between flex-nowrap align-items-stretch overflow-auto row row-cols-md-2 row-cols-xl-<?php echo esc_attr( $cols ); ?>">
+		<div class="da-block justify-content-between flex-nowrap align-items-stretch overflow-auto row row-cols-md-2 row-cols-xl-<?php esc_attr_e( $cols ); ?>">
 			<?php foreach( $args as $arg ) : ?>
 				<div class="da">
 					<div class="da-inner p-3 position-relative">
-						<a class="da-media d-flex stretched-link" href="<?php echo esc_url( $arg['action_link'] ); ?>">
+						<a class="da-media d-flex stretched-link" href="<?php esc_html_e(esc_url( $arg['action_link'] )); ?>">
 							<?php if ( ! empty( $arg['ad_image_attachment'] ) ) : ?>
-								<div class="da-media-left me-3"><?php echo wp_kses_post( $arg['ad_image_attachment'] ); ?></div>
+								<div class="da-media-left me-3"><?php esc_html_e(wp_kses_post( $arg['ad_image_attachment'] )); ?></div>
 							<?php elseif ( ! empty( $arg['ad_image'] ) ) : ?>
-								<div class="da-media-left me-3"><img src="<?php echo esc_url( $arg['ad_image'] ); ?>" alt="" /></div>
+								<div class="da-media-left me-3"><img src="<?php esc_html_e(esc_url( $arg['ad_image'] )); ?>" alt="" /></div>
 							<?php endif; ?>
 							<div class="da-media-body">
 								<div class="da-text">
-									<?php echo wp_kses_post( $arg['ad_text'] ); ?>
+									<?php esc_html_e(wp_kses_post( $arg['ad_text'] )); ?>
 								</div>
 								<div class="da-action">
-									<?php echo wp_kses_post( $arg['action_text'] ); ?>
+									<?php esc_html_e(wp_kses_post( $arg['action_text'] )); ?>
 								</div>
 							</div>
 						</a>
@@ -54,11 +54,11 @@ if ( ! function_exists( 'electro_two_banners' ) ) {
 	*/
 	function electro_two_banners( $args = array() ) {
 		$cols = count( $args );?>
-		<div class="banners columns-<?php echo esc_attr( $cols ); ?>">
+		<div class="banners columns-<?php esc_attr_e( $cols ); ?>">
 			<?php foreach( $args as $arg ) : ?>
-				<a class="banner" href="<?php echo esc_url( $arg['action_link'] ); ?>">
+				<a class="banner" href="<?php esc_html_e(esc_url( $arg['action_link'] )); ?>">
 					<?php if ( ! empty( $arg['image'] ) ) : ?>
-						<img src="<?php echo esc_url( $arg['image'] ); ?>" alt="" />
+						<img src="<?php esc_html_e(esc_url( $arg['image'] )); ?>" alt="" />
 					<?php endif; ?>
 				</a>
 			<?php endforeach; ?>
@@ -156,22 +156,22 @@ if ( ! function_exists( 'electro_products_carousel' ) ) {
 
 			wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 			?>
-			<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+			<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 
 				<?php if ( ! empty( $section_title ) ) : ?>
 
 					<header>
 
-						<h2 class="h1"><?php echo wp_kses_post( $section_title ); ?></h2>
+						<h2 class="h1"><?php esc_html_e(wp_kses_post( $section_title )); ?></h2>
 
 						<?php if ( $show_custom_nav ) : ?>
 							<div class="owl-nav">
 								<?php if ( is_rtl() ) : ?>
-									<a href="#products-carousel-prev" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-right"></i></a>
-									<a href="#products-carousel-next" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-next"><i class="fa fa-angle-left"></i></a>
+									<a href="#products-carousel-prev" data-target="#<?php esc_attr_e( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-right"></i></a>
+									<a href="#products-carousel-next" data-target="#<?php esc_attr_e( $carousel_id ); ?>" class="slider-next"><i class="fa fa-angle-left"></i></a>
 								<?php else : ?>
-									<a href="#products-carousel-prev" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-left"></i></a>
-									<a href="#products-carousel-next" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-next"><i class="fa fa-angle-right"></i></a>
+									<a href="#products-carousel-prev" data-target="#<?php esc_attr_e( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-left"></i></a>
+									<a href="#products-carousel-next" data-target="#<?php esc_attr_e( $carousel_id ); ?>" class="slider-next"><i class="fa fa-angle-right"></i></a>
 								<?php endif; ?>
 							</div>
 						<?php endif; ?>
@@ -180,12 +180,12 @@ if ( ! function_exists( 'electro_products_carousel' ) ) {
 
 				<?php endif; ?>
 
-				<div id="<?php echo esc_attr( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php echo esc_attr( json_encode( $carousel_args ) ); ?>">
+				<div id="<?php esc_attr_e( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php esc_attr_e( json_encode( $carousel_args ) ); ?>">
 					<?php
 					$search 		= array( '<ul', '<li', '</li>', '</ul>', 'class="products' );
 					$replace 		= array( '<div', '<div', '</div>', '</div>', 'class="products owl-carousel products-carousel' );
 					$products_html 	= str_replace( $search, $replace, $products_html );
-					echo apply_filters( 'electro_products_carousel_html', $products_html );
+					esc_html_e(apply_filters( 'electro_products_carousel_html', $products_html ));
 					?>
 				</div>
 			</section>
@@ -283,13 +283,13 @@ if ( ! function_exists( 'electro_deal_and_tabs_block' ) ) {
 			$tabs_section_class 	= $deals_is_enabled !== 'yes' ? 'tabs-block tabs-block-stretch' : 'tabs-block col-md-6 col-lg-7 col-xl-8';
 
 			?>
-			<div class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation );?>"<?php endif; ?>>
+			<div class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation );?>"<?php endif; ?>>
 				<?php if( $deals_is_enabled === 'yes' ) : ?>
-					<div class="<?php echo esc_attr( $deals_section_class ); ?>">
+					<div class="<?php esc_attr_e( $deals_section_class ); ?>">
 						<?php electro_onsale_product( $deal_products_args ); ?>
 					</div>
 				<?php endif; ?>
-				<div class="<?php echo esc_attr( $tabs_section_class ); ?>">
+				<div class="<?php esc_attr_e( $tabs_section_class ); ?>">
 					<?php electro_products_tabs( $product_tabs_args ); ?>
 				</div>
 			</div>
@@ -350,7 +350,7 @@ if ( ! function_exists( 'electro_onsale_product' ) ) {
 
 					global $product;
 					?>
-					<section class="section-onsale-product <?php echo esc_attr( $section_class ); ?>">
+					<section class="section-onsale-product <?php esc_attr_e( $section_class ); ?>">
 
 						<?php if ( ! empty ( $section_title ) || $show_savings ) : ?>
 
@@ -358,7 +358,7 @@ if ( ! function_exists( 'electro_onsale_product' ) ) {
 
 								<?php if ( ! empty ( $section_title ) ) : ?>
 
-									<h2 class="h1"><?php echo wp_kses_post( $section_title ); ?></h2>
+									<h2 class="h1"><?php esc_html_e(wp_kses_post( $section_title )); ?></h2>
 
 								<?php endif ; ?>
 
@@ -366,7 +366,7 @@ if ( ! function_exists( 'electro_onsale_product' ) ) {
 
 									<div class="savings">
 										<span class="savings-text">
-											<?php echo sprintf( '%s %s', $savings_text, Electro_WC_Helper::get_savings_on_sale( $product, $savings_in ) );
+											<?php esc_html_e(sprintf( '%s %s', $savings_text, Electro_WC_Helper::get_savings_on_sale( $product, $savings_in ) ));
 											?>
 										</span>
 									</div>
@@ -431,7 +431,7 @@ if ( ! function_exists( 'electro_onsale_product_v2' ) ) {
 
 				while ( $products->have_posts() ) : $products->the_post();
 					?>
-					<section class="section-onsale-product-v2 <?php echo esc_attr( $section_class ); ?>">
+					<section class="section-onsale-product-v2 <?php esc_attr_e( $section_class ); ?>">
 						<div class="onsale-product">
 							<?php wc_get_template_part( 'templates/contents/content', 'onsale-product-carousel-v2' ); ?>
 						</div>
@@ -539,25 +539,25 @@ if ( ! function_exists( 'electro_onsale_product_carousel' ) ) {
 				wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 
 				?>
-				<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation );?>"<?php endif; ?>>
+				<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation );?>"<?php endif; ?>>
 
 					<?php if ( ! empty ( $section_title ) ) : ?>
 						<header>
-							<h2 class="h1"><?php echo wp_kses_post( $section_title ); ?></h2>
+							<h2 class="h1"><?php esc_html_e(wp_kses_post( $section_title )); ?></h2>
 						</header>
 					<?php endif ; ?>
 					<?php if ( $show_custom_nav ) : ?>
 						<div class="owl-nav">
 							<?php if ( is_rtl() ) : ?>
-								<a href="#onsale-products-carousel-prev" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-right"></i><?php echo esc_html( $carousel_args['navText'][0] ); ?></a>
-								<a href="#onsale-products-carousel-next" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-next"><?php echo esc_html( $carousel_args['navText'][1] ); ?><i class="fa fa-angle-left"></i></a>
+								<a href="#onsale-products-carousel-prev" data-target="#<?php esc_attr_e( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-right"></i><?php esc_html_e( $carousel_args['navText'][0] ); ?></a>
+								<a href="#onsale-products-carousel-next" data-target="#<?php esc_attr_e( $carousel_id ); ?>" class="slider-next"><?php esc_html_e( $carousel_args['navText'][1] ); ?><i class="fa fa-angle-left"></i></a>
 							<?php else : ?>
-								<a href="#onsale-products-carousel-prev" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-left"></i><?php echo esc_html( $carousel_args['navText'][0] ); ?></a>
-								<a href="#onsale-products-carousel-next" data-target="#<?php echo esc_attr( $carousel_id ); ?>" class="slider-next"><?php echo esc_html( $carousel_args['navText'][1] ); ?><i class="fa fa-angle-right"></i></a>
+								<a href="#onsale-products-carousel-prev" data-target="#<?php esc_attr_e( $carousel_id ); ?>" class="slider-prev"><i class="fa fa-angle-left"></i><?php esc_html_e( $carousel_args['navText'][0] ); ?></a>
+								<a href="#onsale-products-carousel-next" data-target="#<?php esc_attr_e( $carousel_id ); ?>" class="slider-next"><?php esc_html_e( $carousel_args['navText'][1] ); ?><i class="fa fa-angle-right"></i></a>
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>
-					<div id="<?php echo esc_attr( $carousel_id ); ?>">
+					<div id="<?php esc_attr_e( $carousel_id ); ?>">
 						<div class="onsale-product-carousel owl-carousel">
 							<?php while ( $products->have_posts() ) : $products->the_post(); ?>
 								<?php global $product; ?>
@@ -571,7 +571,7 @@ if ( ! function_exists( 'electro_onsale_product_carousel' ) ) {
 
 												<div class="savings">
 													<span class="savings-text">
-														<?php echo sprintf( '%s %s', $savings_text, Electro_WC_Helper::get_savings_on_sale( $product, $savings_in ) ); ?>
+														<?php esc_html_e(sprintf( '%s %s', $savings_text, Electro_WC_Helper::get_savings_on_sale( $product, $savings_in ) )); ?>
 													</span>
 												</div>
 
@@ -590,7 +590,7 @@ if ( ! function_exists( 'electro_onsale_product_carousel' ) ) {
 					</div>
 					<script type="text/javascript">
 						jQuery(document).ready( function($){
-							$( '#<?php echo esc_attr( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php echo json_encode( $carousel_args );?> );
+							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php esc_html_e(json_encode( $carousel_args ));?> );
 						} );
 					</script>
 				</section>
@@ -698,19 +698,19 @@ if ( ! function_exists( 'electro_onsale_product_carousel_v5' ) ) {
 				wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 
 				?>
-				<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation );?>"<?php endif; ?>>
+				<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation );?>"<?php endif; ?>>
 
-					<div id="<?php echo esc_attr( $carousel_id ); ?>">
+					<div id="<?php esc_attr_e( $carousel_id ); ?>">
 						<div class="onsale-product-carousel owl-carousel">
 							<?php while ( $products->have_posts() ) : $products->the_post(); ?>
-								<div class="deals-carousel-inner-block"<?php if ( !empty( $style_attr ) ) : ?>style="<?php echo esc_attr( $style_attr );?>"<?php endif; ?>>
+								<div class="deals-carousel-inner-block"<?php if ( !empty( $style_attr ) ) : ?>style="<?php esc_attr_e( $style_attr );?>"<?php endif; ?>>
 									<header>
 										<?php if ( ! empty ( $section_title ) ) : ?>
-											<h2 class="section-title"><?php echo wp_kses_post( $section_title ); ?></h2>
+											<h2 class="section-title"><?php esc_html_e(wp_kses_post( $section_title )); ?></h2>
 										<?php endif ; ?>
 
 										<?php if ( ! empty ( $sub_title ) ) : ?>
-											<h3 class="sub-title"><?php echo wp_kses_post( $sub_title ); ?></h3>
+											<h3 class="sub-title"><?php esc_html_e(wp_kses_post( $sub_title )); ?></h3>
 										<?php endif ; ?>
 									</header>
 
@@ -721,7 +721,7 @@ if ( ! function_exists( 'electro_onsale_product_carousel_v5' ) ) {
 					</div>
 					<script type="text/javascript">
 						jQuery(document).ready( function($){
-							$( '#<?php echo esc_attr( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php echo json_encode( $carousel_args );?> );
+							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php esc_html_e(json_encode( $carousel_args ));?> );
 						} );
 					</script>
 				</section>
@@ -901,9 +901,9 @@ if ( ! function_exists( 'electro_fullbanner_ad' ) ) {
 
 		$el_class = empty ( $el_class ) ? 'fullbanner-ad' : $el_class . ' fullbanner-ad';
 		?>
-		<div class="<?php echo esc_attr( $el_class ); ?>" style="margin-bottom: 39px;">
-			<a href="<?php echo esc_url( $link ); ?>" style="display: block;">
-				<img src="<?php echo esc_url( $img_src ); ?>" class="img-fluid" alt="">
+		<div class="<?php esc_attr_e( $el_class ); ?>" style="margin-bottom: 39px;">
+			<a href="<?php esc_html_e(esc_url( $link )); ?>" style="display: block;">
+				<img src="<?php esc_html_e(esc_url( $img_src )); ?>" class="img-fluid" alt="">
 			</a>
 		</div>
 		<?php
@@ -928,15 +928,15 @@ if ( ! function_exists( 'electro_features_list' ) ) {
 
 		if( ! empty( $features ) ) {
 			?>
-			<div class="features-list clearfix row row-cols-lg-<?php echo esc_attr( $columns ) ; ?>">
+			<div class="features-list clearfix row row-cols-lg-<?php esc_attr_e( $columns ) ; ?>">
 				<?php foreach( $features as $feature ) : ?>
 					<div class="feature">
 						<div class="media">
 							<div class="media-left media-middle feature-icon">
-								<i class="<?php echo esc_attr( $feature['icon'] ); ?>"></i>
+								<i class="<?php esc_attr_e( $feature['icon'] ); ?>"></i>
 							</div>
 							<div class="media-body media-middle feature-text">
-								<?php echo wp_kses_post( $feature['text'] ); ?>
+								<?php esc_html_e(wp_kses_post( $feature['text'] )); ?>
 							</div>
 						</div>
 					</div>
@@ -1073,27 +1073,27 @@ if ( ! function_exists( 'electro_product_cards_carousel' ) ) {
 
 			wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true ); ?>
 
-			<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+			<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 
 				<?php if ( ! empty( $section_title ) ) : ?>
 
 					<header <?php if ( $show_nav ) : ?>class="show-nav"<?php endif; ?>>
 
-						<h2 class="h1"><?php echo esc_html( $section_title ); ?></h2>
+						<h2 class="h1"><?php esc_html_e( $section_title ); ?></h2>
 
 						<?php if ( $show_nav ) : ?>
 							<ul class="nav nav-inline">
 
 								<?php if ( $show_top_text ) : ?>
 									<li class="nav-item active">
-										<span class="nav-link"><?php echo sprintf( esc_html__( 'Top %s', 'electro' ), $products->post_count ); ?></span>
+										<span class="nav-link"><?php esc_html_e(sprintf( esc_html__( 'Top %s', 'electro' ), $products->post_count )); ?></span>
 									</li>
 								<?php endif; ?>
 
 								<?php if ( $show_categories && ! empty ( $categories ) && ! is_wp_error( $categories ) ) : ?>
 								<?php foreach( $categories as $category ) : ?>
 									<li class="nav-item">
-										<a class="nav-link" href="<?php echo esc_url( get_term_link( $category ) ); ?>"><?php echo esc_html( $category->name ); ?></a>
+										<a class="nav-link" href="<?php esc_html_e(esc_url( get_term_link( $category ) )); ?>"><?php esc_html_e( $category->name ); ?></a>
 									</li>
 								<?php endforeach; ?>
 							<?php endif; ?>
@@ -1113,8 +1113,8 @@ if ( ! function_exists( 'electro_product_cards_carousel' ) ) {
 
 			<?php endif; ?>
 
-			<div id="<?php echo esc_attr( $carousel_id );?>" data-ride="owl-carousel" data-carousel-selector=".product-cards-carousel" data-carousel-options="<?php echo esc_attr( json_encode( $carousel_args ) );?>">
-				<?php echo $products_card_html; ?>
+			<div id="<?php esc_attr_e( $carousel_id );?>" data-ride="owl-carousel" data-carousel-selector=".product-cards-carousel" data-carousel-options="<?php esc_attr_e( json_encode( $carousel_args ) );?>">
+				<?php esc_html_e($products_card_html); ?>
 			</div>
 
 			</section><?php
@@ -1497,28 +1497,28 @@ if ( ! function_exists( 'electro_products_carousel_v5' ) ) {
 
 			wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 			?>
-			<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+			<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 
 				<?php if ( ! empty( $section_title ) ) : ?>
 
 					<header>
 
-						<h2 class="h1"><?php echo wp_kses_post( $section_title ); ?></h2>
+						<h2 class="h1"><?php esc_html_e(wp_kses_post( $section_title )); ?></h2>
 
 						<?php if ( ! empty( $button_text ) ) : ?>
-							<a class="action-text" href="<?php echo esc_attr( $button_link ); ?>"><?php echo wp_kses_post( $button_text ); ?></a>
+							<a class="action-text" href="<?php esc_attr_e( $button_link ); ?>"><?php esc_html_e(wp_kses_post( $button_text )); ?></a>
 						<?php endif; ?>
 
 					</header>
 
 				<?php endif; ?>
 
-				<div id="<?php echo esc_attr( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php echo esc_attr( json_encode( $carousel_args ) ); ?>">
+				<div id="<?php esc_attr_e( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php esc_attr_e( json_encode( $carousel_args ) ); ?>">
 					<?php
 					$search 		= array( '<ul', '<li', '</li>', '</ul>', 'class="products' );
 					$replace 		= array( '<div', '<div', '</div>', '</div>', 'class="products owl-carousel products-carousel' );
 					$products_html 	= str_replace( $search, $replace, $products_html );
-					echo apply_filters( 'electro_products_carousel_html', $products_html );
+					esc_html_e(apply_filters( 'electro_products_carousel_html', $products_html ));
 					?>
 				</div>
 			</section>
@@ -1675,12 +1675,12 @@ if ( ! function_exists( 'electro_recent_viewed_products' ) ) {
 			}
 
 			?>
-			<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+			<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 				<header>
-					<h2 class="h1"><?php echo wp_kses_post( $args['section_title'] ); ?></h2>
+					<h2 class="h1"><?php esc_html_e(wp_kses_post( $args['section_title'] )); ?></h2>
 				</header>
 				<div class="products-block">
-					<?php echo electro_do_shortcode( 'products',  $shortcode_atts ); ?>
+					<?php esc_html_e(electro_do_shortcode( 'products',  $shortcode_atts )); ?>
 				</div>
 			</section>
 			<?php
@@ -1747,22 +1747,22 @@ if ( ! function_exists( 'electro_recent_viewed_products_carousel' ) ) {
 
 				wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 				?>
-				<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+				<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 
 					<?php if ( ! empty( $section_title ) ) : ?>
 
 						<header>
-							<h2 class="h1"><?php echo wp_kses_post( $section_title ); ?></h2>
+							<h2 class="h1"><?php esc_html_e(wp_kses_post( $section_title )); ?></h2>
 						</header>
 
 					<?php endif; ?>
 
-					<div id="<?php echo esc_attr( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php echo esc_attr( json_encode( $carousel_args ) ); ?>">
+					<div id="<?php esc_attr_e( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php esc_attr_e( json_encode( $carousel_args ) ); ?>">
 						<?php
 						$search 		= array( '<ul', '<li', '</li>', '</ul>', 'class="products' );
 						$replace 		= array( '<div', '<div', '</div>', '</div>', 'class="products owl-carousel products-carousel' );
 						$products_html 	= str_replace( $search, $replace, $products_html );
-						echo apply_filters( 'electro_products_carousel_html', $products_html );
+						esc_html_e(apply_filters( 'electro_products_carousel_html', $products_html ));
 						?>
 					</div>
 				</section>
@@ -1888,10 +1888,10 @@ if ( ! function_exists( 'electro_products_carousel_tabs_with_deal' ) ) {
 
 			$tab_uniqid = 'home-tab-' . uniqid();
 
-		?><section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ): ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+		?><section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ): ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 			<header class="show-nav">
-				<h2 class="h1"><?php echo esc_html( $args['section_title'] ); ?></h2>
-				<ul class="nav nav-inline text-xs-<?php echo esc_attr( $args['nav-align'] ); ?>">
+				<h2 class="h1"><?php esc_html_e( $args['section_title'] ); ?></h2>
+				<ul class="nav nav-inline text-xs-<?php esc_attr_e( $args['nav-align'] ); ?>">
 					<?php
 					foreach( $args['tabs'] as $key => $tab ) {
 
@@ -1899,19 +1899,19 @@ if ( ! function_exists( 'electro_products_carousel_tabs_with_deal' ) ) {
 
 						?>
 						<li class="nav-item">
-							<a class="nav-link<?php if ( $key == 0 ) echo esc_attr( ' active' ); ?>" href="#<?php echo esc_attr( $tab_id ); ?>" data-bs-toggle="tab">
-								<?php echo wp_kses_post ( $tab['title'] ); ?>
+							<a class="nav-link<?php if ( $key == 0 ) esc_attr_e( ' active' ); ?>" href="#<?php esc_attr_e( $tab_id ); ?>" data-bs-toggle="tab">
+								<?php esc_html_e(wp_kses_post ( $tab['title'] )); ?>
 							</a>
 						</li>
 					<?php } ?>
 				</ul>
 
-				<a class="action-text" href="<?php echo esc_attr( $args['button_link'] ); ?>"><?php echo wp_kses_post( $args['button_text'] ); ?></a>
+				<a class="action-text" href="<?php esc_attr_e( $args['button_link'] ); ?>"><?php esc_html_e(wp_kses_post( $args['button_text'] )); ?></a>
 
 			</header>
 			<div class="row">
 				<?php if( $deals_is_enabled === 'yes' ) : ?>
-					<div class="<?php echo esc_attr( $deals_section_class ); ?>">
+					<div class="<?php esc_attr_e( $deals_section_class ); ?>">
 						<?php electro_onsale_product( $args['deal_products_args'] ); ?>
 					</div>
 				<?php endif; ?>
@@ -1925,7 +1925,7 @@ if ( ! function_exists( 'electro_products_carousel_tabs_with_deal' ) ) {
 						$tab_id = ! empty( $tab['id'] ) ? $tab['id'] : $tab_uniqid . '-' . $key;
 						?>
 
-						<div class="tab-pane <?php if ( $key == 0 ) echo esc_attr( 'active' ); ?>" id="<?php echo esc_attr( $tab_id ); ?>" role="tabpanel">
+						<div class="tab-pane <?php if ( $key == 0 ) esc_attr_e( 'active' ); ?>" id="<?php esc_attr_e( $tab_id ); ?>" role="tabpanel">
 
 							<?php
 							$default_atts   = array( 'per_page' => intval( $args['limit'] ), 'columns' => $columns );
@@ -1957,8 +1957,8 @@ if ( ! function_exists( 'electro_products_carousel_tabs_with_deal' ) ) {
 								);
 							}
 							?>
-							<div id="<?php echo esc_attr( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".product-carousel-rows" data-carousel-options="<?php echo esc_attr( json_encode( $new_carousel_args ) ); ?>">
-								<?php echo apply_filters( 'electro_products_carousel_html', $products_html ); ?>
+							<div id="<?php esc_attr_e( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".product-carousel-rows" data-carousel-options="<?php esc_attr_e( json_encode( $new_carousel_args ) ); ?>">
+								<?php esc_html_e(apply_filters( 'electro_products_carousel_html', $products_html )); ?>
 							</div>
 						</div>
 
@@ -2084,7 +2084,7 @@ if ( ! function_exists( 'products_carousel_banner_vertical_tabs' ) ) {
 			wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 			?>
 
-			<section class="products-carousel-banner-vertical-tabs" <?php if ( ! empty( $bg_img ) ) : ?>style="background-size: cover; background-position: center center; background-image: url( <?php echo esc_url( $bg_img ); ?> );"<?php endif; ?> <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+			<section class="products-carousel-banner-vertical-tabs" <?php if ( ! empty( $bg_img ) ) : ?>style="background-size: cover; background-position: center center; background-image: url( <?php esc_html_e(esc_url( $bg_img )); ?> );"<?php endif; ?> <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 				<div class="container">
 					<div class="banners-tabs row align-items-center">
 						<div class="tab-content">
@@ -2095,15 +2095,15 @@ if ( ! function_exists( 'products_carousel_banner_vertical_tabs' ) ) {
 
 								<?php if ( !empty( $tab['title'] ) ) : ?>
 
-									<div class="tab-pane <?php if ( $key == $default_active_tab ) echo esc_attr( 'active' ); ?> row" id="<?php echo esc_attr( $tab_id ); ?>" role="tabpanel">
+									<div class="tab-pane <?php if ( $key == $default_active_tab ) esc_attr_e( 'active' ); ?> row" id="<?php esc_attr_e( $tab_id ); ?>" role="tabpanel">
 										<div class="tab-content-inner">
-											<div class="tab-title"><?php echo wp_kses_post( $tab['tab_title'] ); ?></div>
-											<div class="tab-sub-title"><?php echo wp_kses_post( $tab['tab_sub_title'] ); ?></div>
-											<a href="<?php echo esc_url( $tab['action_link'] ); ?>"><?php echo esc_html( $tab['action_text'] ); ?></a>
+											<div class="tab-title"><?php esc_html_e(wp_kses_post( $tab['tab_title'] )); ?></div>
+											<div class="tab-sub-title"><?php esc_html_e(wp_kses_post( $tab['tab_sub_title'] )); ?></div>
+											<a href="<?php esc_html_e(esc_url( $tab['action_link'] )); ?>"><?php esc_html_e( $tab['action_text'] ); ?></a>
 										</div>
 										<div class="tab-image">
 											<?php if ( ! empty( $tab['image'] ) ) : ?>
-												<img src="<?php echo esc_url( $tab['image'] ); ?>" alt="" />
+												<img src="<?php esc_html_e(esc_url( $tab['image'] )); ?>" alt="" />
 											<?php endif; ?>
 										</div>
 									</div>
@@ -2120,8 +2120,8 @@ if ( ! function_exists( 'products_carousel_banner_vertical_tabs' ) ) {
 								<?php if ( !empty( $tab['title'] ) ) : ?>
 
 									<li class="nav-item">
-										<a data-bs-toggle="tab" href="#<?php echo esc_attr( $tab_id ); ?>" class="nav-link <?php if ( $key == $default_active_tab ) echo esc_attr( 'active' ); ?>">
-											<span class="category-title"><?php echo wp_kses_post ( $tab['title'] ); ?></span>
+										<a data-bs-toggle="tab" href="#<?php esc_attr_e( $tab_id ); ?>" class="nav-link <?php if ( $key == $default_active_tab ) esc_attr_e( 'active' ); ?>">
+											<span class="category-title"><?php esc_html_e(wp_kses_post ( $tab['title'] )); ?></span>
 										</a>
 									</li>
 
@@ -2131,14 +2131,14 @@ if ( ! function_exists( 'products_carousel_banner_vertical_tabs' ) ) {
 						</ul>
 					</div>
 
-					<div class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+					<div class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 
-						<div id="<?php echo esc_attr( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php echo esc_attr( json_encode( $new_carousel_args ) ); ?>">
+						<div id="<?php esc_attr_e( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php esc_attr_e( json_encode( $new_carousel_args ) ); ?>">
 							<?php
 							$search 		= array( '<ul', '<li', '</li>', '</ul>', 'class="products' );
 							$replace 		= array( '<div', '<div', '</div>', '</div>', 'class="products owl-carousel products-carousel' );
 							$products_html 	= str_replace( $search, $replace, $products_html );
-							echo apply_filters( 'electro_products_carousel_html', $products_html );
+							esc_html_e(apply_filters( 'electro_products_carousel_html', $products_html ));
 							?>
 						</div>
 					</div>
@@ -2266,13 +2266,13 @@ if ( ! function_exists( 'electro_products_carousel_with_timer' ) ) {
 
 			wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 			?>
-			<section class="<?php echo esc_attr( $section_class ); ?> products-carousel-with-timer" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+			<section class="<?php esc_attr_e( $section_class ); ?> products-carousel-with-timer" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 
 				<?php if ( ! empty( $section_title ) ) : ?>
 
 					<header>
 
-						<h2 class="h1"><?php echo wp_kses_post( $section_title ); ?></h2>
+						<h2 class="h1"><?php esc_html_e(wp_kses_post( $section_title )); ?></h2>
 
 						<?php if( isset( $header_timer ) && $header_timer && ! empty( $timer_value ) ) :
 						$deal_end_time = strtotime( $timer_value );
@@ -2281,27 +2281,27 @@ if ( ! function_exists( 'electro_products_carousel_with_timer' ) ) {
 
 						if( $time_diff > 0 ) : ?>
 							<div class="deal-countdown-timer">
-								<div class="marketing-text"><?php echo wp_kses_post( $timer_title ); ?></div>
-								<span class="deal-time-diff" style="display:none;"><?php echo esc_html( $time_diff ); ?></span>
+								<div class="marketing-text"><?php esc_html_e(wp_kses_post( $timer_title )); ?></div>
+								<span class="deal-time-diff" style="display:none;"><?php esc_html_e( $time_diff ); ?></span>
 								<div class="deal-countdown countdown"></div>
 							</div>
 						<?php endif;
 					endif; ?>
 
 					<?php if ( ! empty( $button_text ) ) : ?>
-						<a class="action-text" href="<?php echo esc_attr( $button_link ); ?>"><?php echo wp_kses_post( $button_text ); ?></a>
+						<a class="action-text" href="<?php esc_attr_e( $button_link ); ?>"><?php esc_html_e(wp_kses_post( $button_text )); ?></a>
 					<?php endif; ?>
 
 				</header>
 
 			<?php endif; ?>
 
-			<div id="<?php echo esc_attr( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php echo esc_attr( json_encode( $carousel_args ) ); ?>">
+			<div id="<?php esc_attr_e( $carousel_id );?>" data-ride="owl-carousel" data-replace-active-class="true" data-carousel-selector=".products-carousel" data-carousel-options="<?php esc_attr_e( json_encode( $carousel_args ) ); ?>">
 				<?php
 				$search 		= array( '<ul', '<li', '</li>', '</ul>', 'class="products' );
 				$replace 		= array( '<div', '<div', '</div>', '</div>', 'class="products owl-carousel products-carousel' );
 				$products_html 	= str_replace( $search, $replace, $products_html );
-				echo apply_filters( 'electro_products_carousel_html', $products_html );
+				esc_html_e(apply_filters( 'electro_products_carousel_html', $products_html ));
 				?>
 			</div>
 		</section>
@@ -2332,11 +2332,11 @@ if ( ! function_exists( 'electro_home_vertical_nav' ) ) {
 
     	$menu_title_v6 = apply_filters( 'electro_menu_title_v6', esc_html__( 'Electro Best Selling:', 'electro' ) );
     	?>
-    	<div class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $args['animation'] ) ) : ?>data-animation="<?php echo esc_attr( $args['animation'] );?>"<?php endif; ?>>
+    	<div class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $args['animation'] ) ) : ?>data-animation="<?php esc_attr_e( $args['animation'] );?>"<?php endif; ?>>
     		<div class="dropdown show-dropdown">
     			<div class="vertical-menu-title departments-menu-v2-title">
-    				<span class="title"><?php echo wp_kses_post( $args['menu_title'] ); ?></span>
-    				<a href="<?php echo esc_url( $args['menu_action_link'] ); ?>"><?php echo esc_html( $args['menu_action_text'] ); ?></a>
+    				<span class="title"><?php esc_html_e(wp_kses_post( $args['menu_title'] )); ?></span>
+    				<a href="<?php esc_html_e(esc_url( $args['menu_action_link'] )); ?>"><?php esc_html_e( $args['menu_action_text'] ); ?></a>
     			</div>
     			<?php
     			wp_nav_menu( array(
@@ -2419,7 +2419,7 @@ if ( ! function_exists( 'electro_home_products_categories_1_6' ) ) {
 			$featured_cat = array_shift( $categories );
 
 			?>
-			<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation ); ?>"<?php endif; ?>>
+			<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 				<div class="product-categories-1-6__inner row">
 					<?php if( ! empty( $featured_cat ) ) :
 						$featured_cat_thumbnail_id = get_term_meta( $featured_cat->term_id, 'thumbnail_id', true );
@@ -2429,12 +2429,12 @@ if ( ! function_exists( 'electro_home_products_categories_1_6' ) ) {
 							$featured_cat_image = wc_placeholder_img_src( array( '543', '272' ) );
 						} ?>
 						<div class="featured-category col-xl-5 mb-4 mb-xl-0">
-							<div class="featured-category__inner" <?php if ( ! empty( $featured_cat_image ) ) : ?>style="<?php echo esc_attr( 'background-image: url(' . $featured_cat_image . ');' ); ?>"<?php endif; ?>>
-								<a class="row align-items-center mx-0" href="<?php echo esc_url( get_term_link( $featured_cat ) ); ?>">
+							<div class="featured-category__inner" <?php if ( ! empty( $featured_cat_image ) ) : ?>style="<?php esc_attr_e( 'background-image: url(' . $featured_cat_image . ');' ); ?>"<?php endif; ?>>
+								<a class="row align-items-center mx-0" href="<?php esc_html_e(esc_url( get_term_link( $featured_cat ) )); ?>">
 									<div class="featured-category__inner--left col-md-8 mb-4 mb-md-0 ps-0"></div>
 									<div class="featured-category__inner--right col-md-4 mb-4 mb-md-0">
 										<div class="featured-category__name">
-											<?php echo esc_html( $featured_cat->name ); ?>
+											<?php esc_html_e( $featured_cat->name ); ?>
 										</div>
 									</div>
 								</a>
@@ -2454,14 +2454,14 @@ if ( ! function_exists( 'electro_home_products_categories_1_6' ) ) {
 									} ?>
 									<div class="category flex-shrink-md-1">
 										<div class="category__inner d-md-flex align-items-md-center">
-											<a href="<?php echo esc_url( get_term_link( $category ) ); ?>">
+											<a href="<?php esc_html_e(esc_url( get_term_link( $category ) )); ?>">
 												<div class="media">
 													<div class="media-image">
-														<img class="category-img" src="<?php echo esc_url( $image ); ?>" alt="<?php esc_attr( $category->name ); ?>">
+														<img class="category-img" src="<?php esc_html_e(esc_url( $image )); ?>" alt="<?php esc_attr( $category->name ); ?>">
 													</div>
 													<div class="media-body">
 														<h6 class="category__name">
-															<?php echo esc_html( $category->name ); ?>
+															<?php esc_html_e( $category->name ); ?>
 														</h6>
 													</div>
 												</div>
@@ -2553,8 +2553,8 @@ if ( ! function_exists( 'electro_onsale_product_carousel_v9' ) ) {
 
 
 				?>
-				<section class="<?php echo esc_attr( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php echo esc_attr( $animation );?>"<?php endif; ?>>
-					<div id="<?php echo esc_attr( $carousel_id ); ?>">
+				<section class="<?php esc_attr_e( $section_class ); ?>" <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation );?>"<?php endif; ?>>
+					<div id="<?php esc_attr_e( $carousel_id ); ?>">
 						<div class="onsale-products-carousel owl-carousel">
 							<?php while ( $products->have_posts() ) : $products->the_post(); ?>
 								<div class="onsale-product">
@@ -2565,7 +2565,7 @@ if ( ! function_exists( 'electro_onsale_product_carousel_v9' ) ) {
 					</div>
 					<script type="text/javascript">
 						jQuery(document).ready( function($){
-							$( '#<?php echo esc_attr( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php echo json_encode( $carousel_args );?> );
+							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php esc_html_e(json_encode( $carousel_args ));?> );
 						} );
 					</script>
 				</section>
@@ -2596,8 +2596,8 @@ if ( ! function_exists( 'electro_home_banner_1_6_block' ) ) {
 						$featured_banner_class = esc_attr( ' ' . $featured_banner['el_class'] );
 					?>
 					<div class="mb-3 col-lg-5 featured-banner<?= $featured_banner_class; ?>">
-						<a class="d-block overflow-hidden" href="<?php echo esc_url( $featured_banner['action_link'] ); ?>">
-							<img class="featured-banner-img w-100" src="<?php echo esc_url( $featured_banner['image'] ); ?>">
+						<a class="d-block overflow-hidden" href="<?php esc_html_e(esc_url( $featured_banner['action_link'] )); ?>">
+							<img class="featured-banner-img w-100" src="<?php esc_html_e(esc_url( $featured_banner['image'] )); ?>">
 						</a>
 					</div>
 				<?php endif; ?>
@@ -2605,9 +2605,9 @@ if ( ! function_exists( 'electro_home_banner_1_6_block' ) ) {
 					<div class="banners-list col-lg-7 ps-lg-0">
 						<div class="banners-list__inner row row-cols-md-3">
 							<?php foreach( $args as $arg ) : ?>
-								<div class="mb-3 banner<?php if( isset( $arg['el_class'] ) && ! empty( $arg['el_class'] ) ) echo esc_attr( ' ' . $arg['el_class'] ); ?>">
-									<a class="d-block overflow-hidden" href="<?php echo esc_url( $arg['action_link'] ); ?>">
-										<img class="featured-banner-img w-100" src="<?php echo esc_url( $arg['image'] ); ?>">
+								<div class="mb-3 banner<?php if( isset( $arg['el_class'] ) && ! empty( $arg['el_class'] ) ) esc_attr_e( ' ' . $arg['el_class'] ); ?>">
+									<a class="d-block overflow-hidden" href="<?php esc_html_e(esc_url( $arg['action_link'] )); ?>">
+										<img class="featured-banner-img w-100" src="<?php esc_html_e(esc_url( $arg['image'] )); ?>">
 									</a>
 								</div>
 							<?php endforeach; ?>
