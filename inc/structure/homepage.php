@@ -25,11 +25,11 @@ if ( ! function_exists( 'electro_ads_block' ) ) {
 			<?php foreach( $args as $arg ) : ?>
 				<div class="da">
 					<div class="da-inner p-3 position-relative">
-						<a class="da-media d-flex stretched-link" href="<?php _e(esc_url( $arg['action_link'] )); ?>">
+						<a class="da-media d-flex stretched-link" href="<?php esc_html_e(esc_url( $arg['action_link'] )); ?>">
 							<?php if ( ! empty( $arg['ad_image_attachment'] ) ) : ?>
 								<div class="da-media-left me-3"><?php esc_html_e(wp_kses_post( $arg['ad_image_attachment'] )); ?></div>
 							<?php elseif ( ! empty( $arg['ad_image'] ) ) : ?>
-								<div class="da-media-left me-3"><img src="<?php _e(esc_url( $arg['ad_image'] )); ?>" alt="" /></div>
+								<div class="da-media-left me-3"><img src="<?php esc_html_e(esc_url( $arg['ad_image'] )); ?>" alt="" /></div>
 							<?php endif; ?>
 							<div class="da-media-body">
 								<div class="da-text">
@@ -56,9 +56,9 @@ if ( ! function_exists( 'electro_two_banners' ) ) {
 		$cols = count( $args );?>
 		<div class="banners columns-<?php esc_attr_e( $cols ); ?>">
 			<?php foreach( $args as $arg ) : ?>
-				<a class="banner" href="<?php _e(esc_url( $arg['action_link'] )); ?>">
+				<a class="banner" href="<?php esc_html_e(esc_url( $arg['action_link'] )); ?>">
 					<?php if ( ! empty( $arg['image'] ) ) : ?>
-						<img src="<?php _e(esc_url( $arg['image'] )); ?>" alt="" />
+						<img src="<?php esc_html_e(esc_url( $arg['image'] )); ?>" alt="" />
 					<?php endif; ?>
 				</a>
 			<?php endforeach; ?>
@@ -902,8 +902,8 @@ if ( ! function_exists( 'electro_fullbanner_ad' ) ) {
 		$el_class = empty ( $el_class ) ? 'fullbanner-ad' : $el_class . ' fullbanner-ad';
 		?>
 		<div class="<?php esc_attr_e( $el_class ); ?>" style="margin-bottom: 39px;">
-			<a href="<?php _e(esc_url( $link )); ?>" style="display: block;">
-				<img src="<?php _e(esc_url( $img_src )); ?>" class="img-fluid" alt="">
+			<a href="<?php esc_html_e(esc_url( $link )); ?>" style="display: block;">
+				<img src="<?php esc_html_e(esc_url( $img_src )); ?>" class="img-fluid" alt="">
 			</a>
 		</div>
 		<?php
@@ -1093,7 +1093,7 @@ if ( ! function_exists( 'electro_product_cards_carousel' ) ) {
 								<?php if ( $show_categories && ! empty ( $categories ) && ! is_wp_error( $categories ) ) : ?>
 								<?php foreach( $categories as $category ) : ?>
 									<li class="nav-item">
-										<a class="nav-link" href="<?php _e(esc_url( get_term_link( $category ) )); ?>"><?php esc_html_e( $category->name ); ?></a>
+										<a class="nav-link" href="<?php esc_html_e(esc_url( get_term_link( $category ) )); ?>"><?php esc_html_e( $category->name ); ?></a>
 									</li>
 								<?php endforeach; ?>
 							<?php endif; ?>
@@ -2084,7 +2084,7 @@ if ( ! function_exists( 'products_carousel_banner_vertical_tabs' ) ) {
 			wp_enqueue_script( 'owl-carousel-js', 	get_template_directory_uri() . '/assets/js/owl.carousel.min.js', array( 'jquery' ), $electro_version, true );
 			?>
 
-			<section class="products-carousel-banner-vertical-tabs" <?php if ( ! empty( $bg_img ) ) : ?>style="background-size: cover; background-position: center center; background-image: url( <?php _e(esc_url( $bg_img )); ?> );"<?php endif; ?> <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
+			<section class="products-carousel-banner-vertical-tabs" <?php if ( ! empty( $bg_img ) ) : ?>style="background-size: cover; background-position: center center; background-image: url( <?php esc_html_e(esc_url( $bg_img )); ?> );"<?php endif; ?> <?php if ( ! empty( $animation ) ) : ?>data-animation="<?php esc_attr_e( $animation ); ?>"<?php endif; ?>>
 				<div class="container">
 					<div class="banners-tabs row align-items-center">
 						<div class="tab-content">
@@ -2099,11 +2099,11 @@ if ( ! function_exists( 'products_carousel_banner_vertical_tabs' ) ) {
 										<div class="tab-content-inner">
 											<div class="tab-title"><?php esc_html_e(wp_kses_post( $tab['tab_title'] )); ?></div>
 											<div class="tab-sub-title"><?php esc_html_e(wp_kses_post( $tab['tab_sub_title'] )); ?></div>
-											<a href="<?php _e(esc_url( $tab['action_link'] )); ?>"><?php esc_html_e( $tab['action_text'] ); ?></a>
+											<a href="<?php esc_html_e(esc_url( $tab['action_link'] )); ?>"><?php esc_html_e( $tab['action_text'] ); ?></a>
 										</div>
 										<div class="tab-image">
 											<?php if ( ! empty( $tab['image'] ) ) : ?>
-												<img src="<?php _e(esc_url( $tab['image'] )); ?>" alt="" />
+												<img src="<?php esc_html_e(esc_url( $tab['image'] )); ?>" alt="" />
 											<?php endif; ?>
 										</div>
 									</div>
@@ -2338,7 +2338,7 @@ if ( ! function_exists( 'electro_home_vertical_nav' ) ) {
     		<div class="dropdown show-dropdown">
     			<div class="vertical-menu-title departments-menu-v2-title">
     				<span class="title"><?php esc_html_e(wp_kses_post( $args['menu_title'] )); ?></span>
-    				<a href="<?php _e(esc_url( $args['menu_action_link'] )); ?>"><?php esc_html_e( $args['menu_action_text'] ); ?></a>
+    				<a href="<?php esc_html_e(esc_url( $args['menu_action_link'] )); ?>"><?php esc_html_e( $args['menu_action_text'] ); ?></a>
     			</div>
     			<?php
     			wp_nav_menu( array(
@@ -2432,7 +2432,7 @@ if ( ! function_exists( 'electro_home_products_categories_1_6' ) ) {
 						} ?>
 						<div class="featured-category col-xl-5 mb-4 mb-xl-0">
 							<div class="featured-category__inner" <?php if ( ! empty( $featured_cat_image ) ) : ?>style="<?php esc_attr_e( 'background-image: url(' . $featured_cat_image . ');' ); ?>"<?php endif; ?>>
-								<a class="row align-items-center mx-0" href="<?php _e(esc_url( get_term_link( $featured_cat ) )); ?>">
+								<a class="row align-items-center mx-0" href="<?php esc_html_e(esc_url( get_term_link( $featured_cat ) )); ?>">
 									<div class="featured-category__inner--left col-md-8 mb-4 mb-md-0 ps-0"></div>
 									<div class="featured-category__inner--right col-md-4 mb-4 mb-md-0">
 										<div class="featured-category__name">
@@ -2456,10 +2456,10 @@ if ( ! function_exists( 'electro_home_products_categories_1_6' ) ) {
 									} ?>
 									<div class="category flex-shrink-md-1">
 										<div class="category__inner d-md-flex align-items-md-center">
-											<a href="<?php _e(esc_url( get_term_link( $category ) )); ?>">
+											<a href="<?php esc_html_e(esc_url( get_term_link( $category ) )); ?>">
 												<div class="media">
 													<div class="media-image">
-														<img class="category-img" src="<?php _e(esc_url( $image )); ?>" alt="<?php esc_attr( $category->name ); ?>">
+														<img class="category-img" src="<?php esc_html_e(esc_url( $image )); ?>" alt="<?php esc_attr( $category->name ); ?>">
 													</div>
 													<div class="media-body">
 														<h6 class="category__name">
@@ -2593,8 +2593,8 @@ if ( ! function_exists( 'electro_home_banner_1_6_block' ) ) {
 			<div class="home-banner-1-6__inner row mb-3">
 				<?php if( ! empty( $featured_banner ) ) : ?>
 					<div class="mb-3 col-lg-5 featured-banner<?php if( isset( $featured_banner['el_class'] ) && ! empty( $featured_banner['el_class'] ) ) esc_attr_e( ' ' . $featured_banner['el_class'] ); ?>">
-						<a class="d-block overflow-hidden" href="<?php _e(esc_url( $featured_banner['action_link'] )); ?>">
-							<img class="featured-banner-img w-100" src="<?php _e(esc_url( $featured_banner['image'] )); ?>">
+						<a class="d-block overflow-hidden" href="<?php esc_html_e(esc_url( $featured_banner['action_link'] )); ?>">
+							<img class="featured-banner-img w-100" src="<?php esc_html_e(esc_url( $featured_banner['image'] )); ?>">
 						</a>
 					</div>
 				<?php endif; ?>
@@ -2603,8 +2603,8 @@ if ( ! function_exists( 'electro_home_banner_1_6_block' ) ) {
 						<div class="banners-list__inner row row-cols-md-3">
 							<?php foreach( $args as $arg ) : ?>
 								<div class="mb-3 banner<?php if( isset( $arg['el_class'] ) && ! empty( $arg['el_class'] ) ) esc_attr_e( ' ' . $arg['el_class'] ); ?>">
-									<a class="d-block overflow-hidden" href="<?php _e(esc_url( $arg['action_link'] )); ?>">
-										<img class="featured-banner-img w-100" src="<?php _e(esc_url( $arg['image'] )); ?>">
+									<a class="d-block overflow-hidden" href="<?php esc_html_e(esc_url( $arg['action_link'] )); ?>">
+										<img class="featured-banner-img w-100" src="<?php esc_html_e(esc_url( $arg['image'] )); ?>">
 									</a>
 								</div>
 							<?php endforeach; ?>
