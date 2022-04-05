@@ -32,7 +32,7 @@
 	Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-	if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
+if ( ! class_exists( 'TGM_Plugin_Activation' ) ) {
 
 	/**
 	 * Automatic plugin installation and activation library.
@@ -1043,7 +1043,7 @@
 
 				if ( is_wp_error( $activate ) ) {
 					echo '<div id="message" class="error"><p>', wp_kses_post( $activate->get_error_message() ), '</p></div>',
-					'<p><a href="', esc_url( $this->get_tgmpa_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
+						'<p><a href="', esc_url( $this->get_tgmpa_url() ), '" target="_parent">', esc_html( $this->strings['return'] ), '</a></p>';
 
 					return false; // End it here if there is an error with activation.
 				} else {
@@ -1062,22 +1062,22 @@
 				// No simpler message format provided as this message should never be encountered
 				// on the plugin install page.
 				echo '<div id="message" class="error"><p>',
-				sprintf(
-					esc_html( $this->strings['plugin_already_active'] ),
-					'<strong>' . esc_html( $this->plugins[ $slug ]['name'] ) . '</strong>'
-				),
-				'</p></div>';
+					sprintf(
+						esc_html( $this->strings['plugin_already_active'] ),
+						'<strong>' . esc_html( $this->plugins[ $slug ]['name'] ) . '</strong>'
+					),
+					'</p></div>';
 			} elseif ( $this->does_plugin_require_update( $slug ) ) {
 				if ( ! $automatic ) {
 					// Make sure message doesn't display again if bulk activation is performed
 					// immediately after a single activation.
 					if ( ! isset( $_POST['action'] ) ) { // WPCS: CSRF OK.
 						echo '<div id="message" class="error"><p>',
-						sprintf(
-							esc_html( $this->strings['plugin_needs_higher_version'] ),
-							'<strong>' . esc_html( $this->plugins[ $slug ]['name'] ) . '</strong>'
-						),
-						'</p></div>';
+							sprintf(
+								esc_html( $this->strings['plugin_needs_higher_version'] ),
+								'<strong>' . esc_html( $this->plugins[ $slug ]['name'] ) . '</strong>'
+							),
+							'</p></div>';
 					}
 				} else {
 					// Simpler message layout for use on the plugin install page.
@@ -1595,11 +1595,11 @@
 
 			switch ( $this->plugins[ $slug ]['source_type'] ) {
 				case 'repo':
-				return $this->get_wp_repo_download_url( $slug );
+					return $this->get_wp_repo_download_url( $slug );
 				case 'external':
-				return $this->plugins[ $slug ]['source'];
+					return $this->plugins[ $slug ]['source'];
 				case 'bundled':
-				return $this->default_path . $this->plugins[ $slug ]['source'];
+					return $this->default_path . $this->plugins[ $slug ]['source'];
 			}
 
 			return $dl_source; // Should never happen.
@@ -2061,14 +2061,14 @@
 		 */
 		public function show_tgmpa_version() {
 			echo '<p style="float: right; padding: 0em 1.5em 0.5em 0;"><strong><small>',
-			esc_html(
-				sprintf(
-					/* translators: %s: version number */
-					__( 'TGMPA v%s', 'electro' ),
-					self::TGMPA_VERSION
-				)
-			),
-			'</small></strong></p>';
+				esc_html(
+					sprintf(
+						/* translators: %s: version number */
+						__( 'TGMPA v%s', 'electro' ),
+						self::TGMPA_VERSION
+					)
+				),
+				'</small></strong></p>';
 		}
 
 		/**
@@ -2374,14 +2374,14 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 			switch ( $type ) {
 				case 'repo':
-				$string = __( 'WordPress Repository', 'electro' );
-				break;
+					$string = __( 'WordPress Repository', 'electro' );
+					break;
 				case 'external':
-				$string = __( 'External Source', 'electro' );
-				break;
+					$string = __( 'External Source', 'electro' );
+					break;
 				case 'bundled':
-				$string = __( 'Pre-Packaged', 'electro' );
-				break;
+					$string = __( 'Pre-Packaged', 'electro' );
+					break;
 			}
 
 			return $string;
@@ -2469,24 +2469,24 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 				switch ( $type ) {
 					case 'all':
-					/* translators: 1: number of plugins. */
-					$text = _nx( 'All <span class="count">(%s)</span>', 'All <span class="count">(%s)</span>', $count, 'plugins', 'electro' );
-					break;
+						/* translators: 1: number of plugins. */
+						$text = _nx( 'All <span class="count">(%s)</span>', 'All <span class="count">(%s)</span>', $count, 'plugins', 'electro' );
+						break;
 					case 'install':
-					/* translators: 1: number of plugins. */
-					$text = _n( 'To Install <span class="count">(%s)</span>', 'To Install <span class="count">(%s)</span>', $count, 'electro' );
-					break;
+						/* translators: 1: number of plugins. */
+						$text = _n( 'To Install <span class="count">(%s)</span>', 'To Install <span class="count">(%s)</span>', $count, 'electro' );
+						break;
 					case 'update':
-					/* translators: 1: number of plugins. */
-					$text = _n( 'Update Available <span class="count">(%s)</span>', 'Update Available <span class="count">(%s)</span>', $count, 'electro' );
-					break;
+						/* translators: 1: number of plugins. */
+						$text = _n( 'Update Available <span class="count">(%s)</span>', 'Update Available <span class="count">(%s)</span>', $count, 'electro' );
+						break;
 					case 'activate':
-					/* translators: 1: number of plugins. */
-					$text = _n( 'To Activate <span class="count">(%s)</span>', 'To Activate <span class="count">(%s)</span>', $count, 'electro' );
-					break;
+						/* translators: 1: number of plugins. */
+						$text = _n( 'To Activate <span class="count">(%s)</span>', 'To Activate <span class="count">(%s)</span>', $count, 'electro' );
+						break;
 					default:
-					$text = '';
-					break;
+						$text = '';
+						break;
 				}
 
 				if ( ! empty( $text ) ) {
@@ -2763,14 +2763,14 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 			}
 
 			echo '
-			<tr class="plugin-update-tr">
-			<td colspan="', absint( $this->get_column_count() ), '" class="plugin-update colspanchange">
-			<div class="update-message">',
-			esc_html__( 'Upgrade message from the plugin author:', 'electro' ),
-			' <strong>', wp_kses_data( $item['upgrade_notice'] ), '</strong>
-			</div>
-			</td>
-			</tr>';
+				<tr class="plugin-update-tr">
+					<td colspan="', absint( $this->get_column_count() ), '" class="plugin-update colspanchange">
+						<div class="update-message">',
+							esc_html__( 'Upgrade message from the plugin author:', 'electro' ),
+							' <strong>', wp_kses_data( $item['upgrade_notice'] ), '</strong>
+						</div>
+					</td>
+				</tr>';
 		}
 
 		/**
@@ -2935,14 +2935,14 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 						switch ( $install_type ) {
 
 							case 'install':
-							$sources[] = $source;
-							break;
+								$sources[] = $source;
+								break;
 
 							case 'update':
-							$file_paths[]                 = $this->tgmpa->plugins[ $slug ]['file_path'];
-							$to_inject[ $slug ]           = $this->tgmpa->plugins[ $slug ];
-							$to_inject[ $slug ]['source'] = $source;
-							break;
+								$file_paths[]                 = $this->tgmpa->plugins[ $slug ]['file_path'];
+								$to_inject[ $slug ]           = $this->tgmpa->plugins[ $slug ];
+								$to_inject[ $slug ]['source'] = $source;
+								break;
 						}
 					}
 				}
@@ -2961,9 +2961,9 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				);
 
 				// Wrap the install process with the appropriate HTML.
-				esc_html_e('<div class="tgmpa">
-					<h2 style="font-size: 23px; font-weight: 400; line-height: 29px; margin: 0; padding: 9px 15px 4px 0;">'.esc_html( get_admin_page_title() ).'</h2>
-					<div class="update-php" style="width: 100%; height: 98%; min-height: 850px; padding-top: 1px;">');
+				echo '<div class="tgmpa">',
+					'<h2 style="font-size: 23px; font-weight: 400; line-height: 29px; margin: 0; padding: 9px 15px 4px 0;">', esc_html( get_admin_page_title() ), '</h2>
+					<div class="update-php" style="width: 100%; height: 98%; min-height: 850px; padding-top: 1px;">';
 
 				// Process the bulk installation submissions.
 				add_filter( 'upgrader_source_selection', array( $this->tgmpa, 'maybe_adjust_source_dir' ), 1, 3 );
@@ -2979,7 +2979,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 				remove_filter( 'upgrader_source_selection', array( $this->tgmpa, 'maybe_adjust_source_dir' ), 1 );
 
-				esc_html_e('</div></div>');
+				echo '</div></div>';
 
 				return true;
 			}
@@ -2989,8 +2989,8 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				check_admin_referer( 'bulk-' . $this->_args['plural'] );
 
 				// Did user actually select any plugins to activate ?
-				if ( empty( filter_input(INPUT_POST, 'plugin', FILTER_SANITIZE_STRING) ) ) {
-					esc_html_e('<div id="message" class="error"><p>'. esc_html__( 'No plugins were selected to be activated. No action taken.', 'electro' ) .'</p></div>');
+				if ( empty( $_POST['plugin'] ) ) {
+					echo '<div id="message" class="error"><p>', esc_html__( 'No plugins were selected to be activated. No action taken.', 'electro' ), '</p></div>';
 
 					return false;
 				}
@@ -3016,7 +3016,7 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 
 				// Return early if there are no plugins to activate.
 				if ( empty( $plugins_to_activate ) ) {
-					esc_html_e('<div id="message" class="error"><p>'. esc_html__( 'No plugins are available to be activated at this time.', 'electro' ) .'</p></div>');
+					echo '<div id="message" class="error"><p>', esc_html__( 'No plugins are available to be activated at this time.', 'electro' ), '</p></div>';
 
 					return false;
 				}
@@ -3330,16 +3330,16 @@ if ( ! function_exists( 'tgmpa_load_bulk_installer' ) ) {
 						foreach ( $plugins as $plugin )
 							$maintenance = $maintenance || ( is_plugin_active( $plugin ) && isset( $current->response[ $plugin] ) );
 						*/
-							if ( $maintenance ) {
-								$this->maintenance_mode( true );
-							}
+						if ( $maintenance ) {
+							$this->maintenance_mode( true );
+						}
 
-							$results = array();
+						$results = array();
 
-							$this->update_count   = count( $plugins );
-							$this->update_current = 0;
-							foreach ( $plugins as $plugin ) {
-								$this->update_current++;
+						$this->update_count   = count( $plugins );
+						$this->update_current = 0;
+						foreach ( $plugins as $plugin ) {
+							$this->update_current++;
 
 							/*
 							[TGMPA - ]
