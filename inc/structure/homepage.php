@@ -936,7 +936,7 @@ if ( ! function_exists( 'electro_features_list' ) ) {
 								<i class="<?php esc_attr_e( $feature['icon'] ); ?>"></i>
 							</div>
 							<div class="media-body media-middle feature-text">
-								<?php esc_html_e(wp_kses_post( $feature['text'] )); ?>
+								<?php _e(wp_kses_post( $feature['text'] )); ?>
 							</div>
 						</div>
 					</div>
