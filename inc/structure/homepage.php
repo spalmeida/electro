@@ -590,7 +590,7 @@ if ( ! function_exists( 'electro_onsale_product_carousel' ) ) {
 					</div>
 					<script type="text/javascript">
 						jQuery(document).ready( function($){
-							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php _e(json_encode( $carousel_args ));?> );
+							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php esc_attr_e(json_encode( $carousel_args ));?> );
 						} );
 					</script>
 				</section>
@@ -721,7 +721,7 @@ if ( ! function_exists( 'electro_onsale_product_carousel_v5' ) ) {
 					</div>
 					<script type="text/javascript">
 						jQuery(document).ready( function($){
-							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php esc_html_e(json_encode( $carousel_args ));?> );
+							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php esc_attr_e(json_encode( $carousel_args ));?> );
 						} );
 					</script>
 				</section>
@@ -2567,7 +2567,7 @@ if ( ! function_exists( 'electro_onsale_product_carousel_v9' ) ) {
 					</div>
 					<script type="text/javascript">
 						jQuery(document).ready( function($){
-							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php _e(json_encode( $carousel_args ));?> );
+							$( '#<?php esc_attr_e( $carousel_id ); ?> .owl-carousel').owlCarousel( <?php esc_attr_e(json_encode( $carousel_args ));?> );
 						} );
 					</script>
 				</section>
